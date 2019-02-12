@@ -19,11 +19,12 @@ OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
 
 float roomTemp, roomHumidity, roomHeatIndex,
-      pod0Temp, pod1Temp, CO2PPM;
+      pod0Temp, pod1Temp, CO2PPM, VPD;
 
 int waterLevel0, waterLevel1;
 
 void readRoomTempHumidity();
+void calculateVPD(float temp, float rh);
 void readPodTemps();
 void co2ppm();
 void readWaterLevels();
@@ -59,12 +60,23 @@ void loop() {
   sensors.requestTemperatures();
   readPodTemps();
   readRoomTempHumidity();
+  calculateVPD(roomTemp, roomHumidity);
   co2ppm();
   readWaterLevels();
 
   digitalWrite(LED_BUILTIN, LOW);
 
   delay(2000);
+}
+
+void calculateVPD(float temp, float rh) {
+	float es = 0.6108 * exp(17.27 * temp / (temp + 237.3));
+	float ea = rh / 100 * es;
+	VPD = ea - es;
+	if(HYDRO_DEBUG) {
+		Serial.print("VPD: ");
+		Serial.println(VPD);
+	}
 }
 
 void readPodTemps() {
@@ -114,12 +126,15 @@ void co2ppm() {
   else
   {
     int voltage_diference = voltage-400;
-    float concentration = voltage_diference*50.0/16.0;
-    Serial.print("co2 voltage:");
-    Serial.print(voltage);
-    Serial.println("mv");
-    Serial.print(concentration);
-    Serial.println("ppm");
+    float concentration = voltage_diference * 50.0 / 16.0;
+
+    if(HYDRO_DEBUG) {
+		Serial.print("co2 voltage:");
+		Serial.print(voltage);
+		Serial.println("mv");
+		Serial.print(concentration);
+		Serial.println("ppm");
+    }
     CO2PPM = concentration;
   }
 }
