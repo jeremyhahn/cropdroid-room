@@ -23,7 +23,7 @@ DallasTemperature sensors(&oneWire);
 float roomTempF, roomTempC, roomHumidity, roomHeatIndex,
       pod0Temp, pod1Temp, CO2PPM, VPD;
 
-int pod0WaterLevel, pod1WaterLevel;
+int waterLevel0, waterLevel1;
 
 void readRoomTempHumidity();
 void calculateVPD(float temp, float rh);
@@ -156,15 +156,15 @@ void co2ppm() {
 
 void readWaterLevels() {
 
-  pod0WaterLevel = analogRead(WATER0_PIN) * 100 / 1024;
-  pod1WaterLevel = analogRead(WATER1_PIN) * 100 / 1024;
+  waterLevel0 = analogRead(WATER0_PIN) * 100 / 1024;
+  waterLevel1 = analogRead(WATER1_PIN) * 100 / 1024;
 
    Serial.print("Water Level 0: " );
-   Serial.print(pod0WaterLevel);
+   Serial.print(waterLevel0);
    Serial.println("%");
 
    Serial.print("Water Level 1: " );
-   Serial.print(pod1WaterLevel);
+   Serial.print(waterLevel1);
    Serial.println("%");
 }
 
@@ -215,16 +215,16 @@ void handleWebRequest() {
 				if (strncmp(resource, "status", 6) == 0) {
 
 					jsonOut += "{";
-						jsonOut += "\"roomTempF\":\"" + String(roomTempF) + "\", ";
-						jsonOut += "\"roomTempC\":\"" + String(roomTempC) + "\", ";
-						jsonOut += "\"roomHumidity\":\"" + String(roomHumidity) + "\", ";
-						jsonOut += "\"roomHeatIndex\":\"" + String(roomHeatIndex) + "\", ";
-						jsonOut += "\"VPD\":\"" + String(VPD) + "\", ";
-						jsonOut += "\"pod0Temp\":\"" + String(pod0Temp) + "\", ";
-						jsonOut += "\"pod1Temp\":\"" + String(pod1Temp) + "\", ";
-						jsonOut += "\"CO2PPM\":\"" + String(CO2PPM) + "\", ";
-						jsonOut += "\"pod0WaterLevel\":\"" + String(pod0WaterLevel) + "\", ";
-						jsonOut += "\"pod1WaterLevel\":\"" + String(pod1WaterLevel) + "\" ";
+						jsonOut += "\"tempF\":\"" + String(roomTempF) + "\", ";
+						jsonOut += "\"tempC\":\"" + String(roomTempC) + "\", ";
+						jsonOut += "\"humidity\":\"" + String(roomHumidity) + "\", ";
+						jsonOut += "\"heatIndex\":\"" + String(roomHeatIndex) + "\", ";
+						jsonOut += "\"vpd\":\"" + String(VPD) + "\", ";
+						jsonOut += "\"pod0\":\"" + String(pod0Temp) + "\", ";
+						jsonOut += "\"pod1\":\"" + String(pod1Temp) + "\", ";
+						jsonOut += "\"co2\":\"" + String(CO2PPM) + "\", ";
+						jsonOut += "\"water0\":\"" + String(waterLevel0) + "\", ";
+						jsonOut += "\"water1\":\"" + String(waterLevel1) + "\" ";
 					jsonOut += "}";
 				}
 				else {

@@ -2,7 +2,7 @@ ORG := jeremyhahn
 PACKAGE := harvest.room
 TARGET_OS := linux
 
-.PHONY: flash
+.PHONY: flash flash-mega
 
 default: flash
 
