@@ -6,13 +6,15 @@
 
 #define DEBUG_MODE 1
 #define HYDRO_DEBUG 1
+#define BUFSIZE 100
 
-#define ONE_WIRE_BUS 5
-#define DHT_ROOM_PIN 7
+#define ONE_WIRE_BUS 2
+#define DHT_ROOM_PIN 5
+#define DEHU_PIN 6
 #define CO2_PIN A0
 #define WATER0_PIN A1
 #define WATER1_PIN A2
-#define BUFSIZE 100
+#define PHOTO_PIN A3
 
 //const char PROGMEM_initController[] PROGMEM  = {"Initializing controller..."};
 
@@ -23,16 +25,19 @@ DallasTemperature sensors(&oneWire);
 float roomTempF, roomTempC, roomHumidity, roomHeatIndex,
       pod0Temp, pod1Temp, CO2PPM, VPD;
 
-int waterLevel0, waterLevel1;
+int waterLevel0, waterLevel1, photo;
 
 void readRoomTempHumidity();
 void calculateVPD(float temp, float rh);
 void readPodTemps();
+void readPhoto();
 void co2ppm();
 void readWaterLevels();
 void handleWebRequest();
 void sendHtmlHeader();
 void send404();
+void startDehu();
+void stopDehu();
 
 byte mac[] = { 0x90, 0xA2, 0xDA, 0x0E, 0xFE, 0x41 };
 IPAddress ip(192,168,0,200);
@@ -52,10 +57,11 @@ int main(void) {
 
 void setup(void) {
 
+  analogReference(DEFAULT);
+  pinMode(DEHU_PIN, OUTPUT);
+
   Serial.begin(115200);
   Serial.println("Initializing controller...");
-
-  analogReference(DEFAULT);
 
   if(Ethernet.begin(mac) == 0) {
     Serial.println("DHCP failed");
@@ -79,6 +85,7 @@ void loop() {
   sensors.requestTemperatures();
   readPodTemps();
   readRoomTempHumidity();
+  readPhoto();
   calculateVPD(roomTempC, roomHumidity);
   co2ppm();
   readWaterLevels();
@@ -91,21 +98,34 @@ void loop() {
 }
 
 void calculateVPD(float temp, float rh) {
-  float es = 0.6108 * exp(17.27 * temp / (temp + 237.3));
+  //float es = 0.6108 * exp(17.27 * temp / (temp + 237.3));
+  //float ea = rh / 100 * es;
+  //VPD = ea - es;
+
+  float es = 0.6107 * exp(7.5 * temp / (temp + 237.3));
   float ea = rh / 100 * es;
   VPD = ea - es;
-    Serial.print("VPD: ");
-    Serial.println(VPD);
+
+
+  //float svp = 610.78 * exp(temp / (temp + 238.3) * 17.2694);
+  //VPD = svp * (1 - rh / 100);
+
+  Serial.print("VPD: ");
+  Serial.println(VPD);
 }
 
 void readPodTemps() {
   pod0Temp = sensors.getTempFByIndex(0);
   pod1Temp = sensors.getTempFByIndex(1);
 
-    Serial.print("Pod 0 Temp: ");
-    Serial.println(pod0Temp);
-    Serial.print("Pod 1 Temp: ");
-    Serial.println(pod1Temp);
+  Serial.print("Pod 0 Temp: ");
+  Serial.println(pod0Temp);
+  Serial.print("Pod 1 Temp: ");
+  Serial.println(pod1Temp);
+}
+
+void readPhoto() {
+  photo = analogRead(PHOTO_PIN);
 }
 
 void readRoomTempHumidity() {
@@ -115,21 +135,20 @@ void readRoomTempHumidity() {
   roomHumidity = roomDHT.readHumidity();
   roomHeatIndex = roomDHT.computeHeatIndex(roomTempF, roomHumidity);
 
-    Serial.print("Room Temp F: ");
-    Serial.println(roomTempF);
-    Serial.print("Room Temp C: ");
-    Serial.println(roomTempC);
-    Serial.print("Room Humidity: ");
-    Serial.println(roomHumidity);
-    Serial.print("Room Heat Index: ");
-    Serial.println(roomHeatIndex);
+  Serial.print("TempF: ");
+  Serial.println(roomTempF);
+  Serial.print("TempC: ");
+  Serial.println(roomTempC);
+  Serial.print("Humidity: ");
+  Serial.println(roomHumidity);
+  Serial.print("HeatIndex: ");
+  Serial.println(roomHeatIndex);
 }
 
 void co2ppm() {
 
   int sensorValue = analogRead(CO2_PIN);
 
-  // The analog signal is converted to a voltage
   float voltage = sensorValue * (5000 / 1024.0);
   if(voltage == 0)
   {
@@ -159,13 +178,21 @@ void readWaterLevels() {
   waterLevel0 = analogRead(WATER0_PIN) * 100 / 1024;
   waterLevel1 = analogRead(WATER1_PIN) * 100 / 1024;
 
-   Serial.print("Water Level 0: " );
-   Serial.print(waterLevel0);
-   Serial.println("%");
+  Serial.print("Water0: " );
+  Serial.print(waterLevel0);
+  Serial.println("%");
 
-   Serial.print("Water Level 1: " );
-   Serial.print(waterLevel1);
-   Serial.println("%");
+  Serial.print("Water1: " );
+  Serial.print(waterLevel1);
+  Serial.println("%");
+}
+
+void startDehu() {
+  digitalWrite(DEHU_PIN, HIGH);
+}
+
+void stopDehu() {
+  digitalWrite(DEHU_PIN, LOW);
 }
 
 void handleWebRequest() {
@@ -224,7 +251,8 @@ void handleWebRequest() {
 						jsonOut += "\"pod1\":\"" + String(pod1Temp) + "\", ";
 						jsonOut += "\"co2\":\"" + String(CO2PPM) + "\", ";
 						jsonOut += "\"water0\":\"" + String(waterLevel0) + "\", ";
-						jsonOut += "\"water1\":\"" + String(waterLevel1) + "\" ";
+						jsonOut += "\"water1\":\"" + String(waterLevel1) + "\", ";
+						jsonOut += "\"photo\":\"" + String(photo) + "\" ";
 					jsonOut += "}";
 				}
 				else {
@@ -253,7 +281,7 @@ void handleWebRequest() {
 
 void sendHtmlHeader() {
 
-	httpClient.println("<h5>Harvest Room Controller v1.0</h5>");
+	//httpClient.println("<h5>Harvest Room Controller v1.0</h5>");
 }
 
 void send404() {
