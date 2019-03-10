@@ -116,7 +116,7 @@ void switchOff(int pin);
 int availableMemory();
 void(* resetFunc) (void) = 0;
 
-byte mac[] = { 0x04, 0x02, 0x00, 0x00, 0x02, 0x01 };
+byte mac[] = { 0x04, 0x02, 0x00, 0x00, 0x00, 0x01 };
 IPAddress ip(192,168,0,200);
 
 EthernetServer httpServer(80);
