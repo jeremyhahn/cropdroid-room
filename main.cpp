@@ -1,31 +1,67 @@
+#include <stdio.h>
 #include <Arduino.h>
 #include <Ethernet.h>
 #include "DHT.h"
 #include "OneWire.h"
 #include "DallasTemperature.h"
 
-#define DEBUG_MODE 1
-#define HYDRO_DEBUG 1
+#define DEBUG 1
 #define BUFSIZE 100
 
 #define ONE_WIRE_BUS 2
 #define DHT_ROOM_PIN 5
 #define DEHU_PIN 6
+#define FAN_PIN 7
 #define CO2_PIN A0
 #define WATER0_PIN A1
 #define WATER1_PIN A2
 #define PHOTO_PIN A3
 
-//const char PROGMEM_initController[] PROGMEM  = {"Initializing controller..."};
+const char string_initializing[] PROGMEM = "Initializing...";
+const char string_dhcp_failed[] PROGMEM = "DHCP Failed";
+const char string_http_200[] PROGMEM = "HTTP/1.1 200 OK";
+const char string_http_404[] PROGMEM = "HTTP/1.1 404 Not Found";
+const char string_http_500[] PROGMEM = "HTTP/1.1 500 Internal Server Error";
+const char string_http_xpowered_by[] PROGMEM = "X-Powered-By: Harvest Room Controller v1.0";
+const char string_rest_address[] PROGMEM = "REST service listening on: ";
+const char string_dehu_start[] PROGMEM = "Starting dehumidifier...";
+const char string_dehu_stop[] PROGMEM = "Stopping dehumidifier...";
+const char string_fan_start[] PROGMEM = "Starting fan...";
+const char string_fan_stop[] PROGMEM = "Stopping fan...";
+const char * const string_table[] PROGMEM = {
+  string_initializing,
+  string_dhcp_failed,
+  string_http_200,
+  string_http_404,
+  string_http_500,
+  string_http_xpowered_by,
+  string_rest_address,
+  string_dehu_start,
+  string_dehu_stop,
+  string_fan_start,
+  string_fan_stop
+};
+int idx_initializing = 0,
+    idx_dhcp_failed = 1,
+	idx_http_200 = 2,
+	idx_http_404 = 3,
+	idx_http_500 = 4,
+	idx_http_xpowered_by = 5,
+	idx_rest_address = 6,
+	idx_dehu_start = 7,
+	idx_dehu_stop = 8,
+	idx_fan_start = 9,
+	idx_fan_stop = 10;
+char string_buffer[50];
 
 DHT roomDHT(DHT_ROOM_PIN, DHT22);
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
 
 float roomTempF, roomTempC, roomHumidity, roomHeatIndex,
-      pod0Temp, pod1Temp, CO2PPM, VPD;
+      pod0Temp, pod1Temp, CO2PPM, VPD = 0.0;
 
-int waterLevel0, waterLevel1, photo;
+int waterLevel0, waterLevel1, photo = 0;
 
 void readRoomTempHumidity();
 void calculateVPD(float temp, float rh);
@@ -34,12 +70,14 @@ void readPhoto();
 void co2ppm();
 void readWaterLevels();
 void handleWebRequest();
-void sendHtmlHeader();
 void send404();
 void startDehu();
 void stopDehu();
+void startFan();
+void stopFan();
+void(* resetFunc) (void) = 0;
 
-byte mac[] = { 0x90, 0xA2, 0xDA, 0x0E, 0xFE, 0x41 };
+byte mac[] = { 0x04, 0x02, 0x00, 0x00, 0x00, 0x01 };
 IPAddress ip(192,168,0,200);
 
 EthernetServer httpServer(80);
@@ -55,27 +93,34 @@ int main(void) {
   return 0;
 }
 
+
+
 void setup(void) {
 
   analogReference(DEFAULT);
   pinMode(DEHU_PIN, OUTPUT);
+  pinMode(FAN_PIN, OUTPUT);
 
+#if DEBUG
   Serial.begin(115200);
-  Serial.println("Initializing controller...");
+
+  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_initializing])));
+  Serial.println(string_buffer);
+#endif
 
   if(Ethernet.begin(mac) == 0) {
-    Serial.println("DHCP failed");
+    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_dhcp_failed])));
+    Serial.println(string_buffer);
     Ethernet.begin(mac, ip);
   }
 
   httpServer.begin();
 
-  Serial.print("REST server listening on ");
+  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_rest_address])));
+  Serial.println(string_buffer);
   Serial.println(Ethernet.localIP());
 
   roomDHT.begin();
-
-  Serial.println("Starting...");
 }
 
 void loop() {
@@ -110,22 +155,30 @@ void calculateVPD(float temp, float rh) {
   //float svp = 610.78 * exp(temp / (temp + 238.3) * 17.2694);
   //VPD = svp * (1 - rh / 100);
 
+#if DEBUG
   Serial.print("VPD: ");
   Serial.println(VPD);
+#endif
 }
 
 void readPodTemps() {
   pod0Temp = sensors.getTempFByIndex(0);
   pod1Temp = sensors.getTempFByIndex(1);
 
+#if DEBUG
   Serial.print("Pod 0 Temp: ");
   Serial.println(pod0Temp);
   Serial.print("Pod 1 Temp: ");
   Serial.println(pod1Temp);
+#endif
 }
 
 void readPhoto() {
   photo = analogRead(PHOTO_PIN);
+#if DEBUG
+  Serial.print("Photo: ");
+  Serial.println(photo);
+#endif
 }
 
 void readRoomTempHumidity() {
@@ -135,6 +188,7 @@ void readRoomTempHumidity() {
   roomHumidity = roomDHT.readHumidity();
   roomHeatIndex = roomDHT.computeHeatIndex(roomTempF, roomHumidity);
 
+#if DEBUG
   Serial.print("TempF: ");
   Serial.println(roomTempF);
   Serial.print("TempC: ");
@@ -143,6 +197,7 @@ void readRoomTempHumidity() {
   Serial.println(roomHumidity);
   Serial.print("HeatIndex: ");
   Serial.println(roomHeatIndex);
+#endif
 }
 
 void co2ppm() {
@@ -152,23 +207,28 @@ void co2ppm() {
   float voltage = sensorValue * (5000 / 1024.0);
   if(voltage == 0)
   {
-    Serial.println("CO2 Fault");
+	#if DEBUG
+      Serial.println("CO2 Fault");
+	#endif
   }
   else if(voltage < 400)
   {
-    Serial.println("Preheating CO2 sensor");
+	#if DEBUG
+      Serial.println("Preheating CO2 sensor");
+	#endif
   }
   else
   {
     int voltage_diference = voltage-400;
     float concentration = voltage_diference*50.0/16.0;
 
-    Serial.print("co2 voltage:");
-    Serial.print(voltage);
-    Serial.println("mv");
-    Serial.print(concentration);
-    Serial.println("ppm");
-
+	#if DEBUG
+	  Serial.print("co2 voltage:");
+	  Serial.print(voltage);
+	  Serial.println("mv");
+	  Serial.print(concentration);
+	  Serial.println("ppm");
+	#endif
     CO2PPM = concentration;
   }
 }
@@ -178,6 +238,7 @@ void readWaterLevels() {
   waterLevel0 = analogRead(WATER0_PIN) * 100 / 1024;
   waterLevel1 = analogRead(WATER1_PIN) * 100 / 1024;
 
+#if DEBUG
   Serial.print("Water0: " );
   Serial.print(waterLevel0);
   Serial.println("%");
@@ -185,14 +246,39 @@ void readWaterLevels() {
   Serial.print("Water1: " );
   Serial.print(waterLevel1);
   Serial.println("%");
+#endif
 }
 
 void startDehu() {
+#if DEBUG
+  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_dehu_start])));
+  Serial.println(string_buffer);
+#endif
   digitalWrite(DEHU_PIN, HIGH);
 }
 
 void stopDehu() {
+#if DEBUG
+  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_dehu_stop])));
+  Serial.println(string_buffer);
+#endif
   digitalWrite(DEHU_PIN, LOW);
+}
+
+void startFan() {
+#if DEBUG
+  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_fan_start])));
+  Serial.println(string_buffer);
+#endif
+  digitalWrite(FAN_PIN, HIGH);
+}
+
+void stopFan() {
+#if DEBUG
+  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_fan_stop])));
+  Serial.println(string_buffer);
+#endif
+  digitalWrite(FAN_PIN, LOW);
 }
 
 void handleWebRequest() {
@@ -201,6 +287,7 @@ void handleWebRequest() {
 
 	char clientline[BUFSIZE];
 	int index = 0;
+	bool reset = false;
 
 	if (httpClient) {
 
@@ -224,48 +311,132 @@ void handleWebRequest() {
 				urlString = urlString.substring(urlString.indexOf('/'), urlString.indexOf(' ', urlString.indexOf('/')));
 				urlString.toCharArray(clientline, BUFSIZE);
 
-				//char *key = strtok(clientline, "/");
-				//char *resource = strtok(NULL, "/");
-
 				char *resource = strtok(clientline, "/");
-
-				Serial.print("HTTP Resource: ");
-				Serial.println(resource);
-
 				char *param1 = strtok(NULL, "/");
 				char *param2 = strtok(NULL, "/");
 
-				String jsonOut = String();
+				//Serial.print("Resource: ");
+				//Serial.println(resource);
+
+				char json[255];
+				char float_buffer[7];
+
 				int address = atoi(param1);
 
 				// /status
 				if (strncmp(resource, "status", 6) == 0) {
 
-					jsonOut += "{";
-						jsonOut += "\"tempF\":\"" + String(roomTempF) + "\", ";
-						jsonOut += "\"tempC\":\"" + String(roomTempC) + "\", ";
-						jsonOut += "\"humidity\":\"" + String(roomHumidity) + "\", ";
-						jsonOut += "\"heatIndex\":\"" + String(roomHeatIndex) + "\", ";
-						jsonOut += "\"vpd\":\"" + String(VPD) + "\", ";
-						jsonOut += "\"pod0\":\"" + String(pod0Temp) + "\", ";
-						jsonOut += "\"pod1\":\"" + String(pod1Temp) + "\", ";
-						jsonOut += "\"co2\":\"" + String(CO2PPM) + "\", ";
-						jsonOut += "\"water0\":\"" + String(waterLevel0) + "\", ";
-						jsonOut += "\"water1\":\"" + String(waterLevel1) + "\", ";
-						jsonOut += "\"photo\":\"" + String(photo) + "\" ";
-					jsonOut += "}";
+					strcpy(json, "{");
+
+					  strcat(json, "\"tempF\":");
+					  dtostrf(roomTempF, 4, 2, float_buffer);
+					  strcat(json, float_buffer);
+					  strcat(json, ", ");
+
+					  strcat(json, "\"tempC\":");
+                      dtostrf(roomTempC, 4, 2, float_buffer);
+                      strcat(json, float_buffer);
+                      strcat(json, ", ");
+
+                      strcat(json, "\"humidity\":");
+                      dtostrf(roomHumidity, 4, 2, float_buffer);
+					  strcat(json, float_buffer);
+					  strcat(json, ", ");
+
+					  strcat(json, "\"heatIndex\":");
+					  dtostrf(roomHeatIndex, 4, 2, float_buffer);
+					  strcat(json, float_buffer);
+					  strcat(json, ", ");
+
+					  strcat(json, "\"vpd\":");
+					  dtostrf(VPD, 4, 2, float_buffer);
+					  strcat(json, float_buffer);
+					  strcat(json, ", ");
+
+					  strcat(json, "\"pod0\":");
+					  dtostrf(pod0Temp, 4, 2, float_buffer);
+					  strcat(json, float_buffer);
+					  strcat(json, ", ");
+
+					  strcat(json, "\"pod1\":");
+					  dtostrf(roomHeatIndex, 4, 2, float_buffer);
+					  strcat(json, float_buffer);
+					  strcat(json, ", ");
+
+					  strcat(json, "\"co2\":");
+					  dtostrf(CO2PPM, 4, 2, float_buffer);
+					  strcat(json, float_buffer);
+					  strcat(json, ", ");
+
+					  strcat(json, "\"water0\":");
+					  itoa(waterLevel0, float_buffer, 10);
+					  strcat(json, float_buffer);
+					  strcat(json, ", ");
+
+					  strcat(json, "\"water1\":");
+					  itoa(waterLevel1, float_buffer, 10);
+					  strcat(json, float_buffer);
+					  strcat(json, ", ");
+
+					  strcat(json, "\"photo\":");
+					  itoa(photo, float_buffer, 10);
+					  strcat(json, float_buffer);
+
+					strcat(json, "}");
+				}
+				// /dehu/?     1 = on, else off
+				else if (strncmp(resource, "dehu", 4) == 0) {
+					#if DEBUG
+						Serial.print("Dehu: ");
+						Serial.println(param1);
+					#endif
+					if(strncmp(param1, "1", 1) == 0) {
+						startDehu();
+						strcpy(json, "{\"dehu\":true}");
+					}
+					else {
+						stopDehu();
+						strcpy(json, "{\"dehu\":false}");
+					}
+				}
+				// /fan/?     1 = on, else off
+				else if (strncmp(resource, "fan", 4) == 0) {
+					#if DEBUG
+						Serial.print("Fan: ");
+						Serial.println(param1);
+					#endif
+					if(strncmp(param1, "1", 1) == 0) {
+						startFan();
+						strcpy(json, "{\"fan\":true}");
+					}
+					else {
+						stopFan();
+						strcpy(json, "{\"fan\":false}");
+					}
+				}
+				// /reboot
+				else if (strncmp(resource, "reboot", 6) == 0) {
+					#if DEBUG
+						Serial.println("Rebooting...");
+					#endif
+					strcpy(json, "{\"reboot\":true}");
+					reset = true;
 				}
 				else {
 					send404();
 					break;
 				}
 
-				httpClient.println("HTTP/1.1 200 OK");
-				//httpClient.println("Content-Type: text/html");
+				strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_http_200])));
+				httpClient.println(string_buffer);
+
 				//httpClient.println("Access-Control-Allow-Origin: *");
-				//httpClient.println("X-Powered-By: Harvest Room Controller v1.0");
+
+				strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_http_xpowered_by])));
+				httpClient.println(string_buffer);
+
 				httpClient.println();
-				httpClient.println(jsonOut);
+				httpClient.println(json);
 
 				break;
 			}
@@ -277,20 +448,19 @@ void handleWebRequest() {
 
 	// close the connection:
 	httpClient.stop();
-}
 
-void sendHtmlHeader() {
-
-	//httpClient.println("<h5>Harvest Room Controller v1.0</h5>");
+	if(reset)  {
+	  resetFunc();
+	}
 }
 
 void send404() {
 
-	httpClient.println("HTTP/1.1 404 Not Found");
-	//httpClient.println("Content-Type: text/html");
-	//httpClient.println("X-Powered-By: Harvest Room Controller v1.0");
-	httpClient.println();
+	strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_http_404])));
+	httpClient.println(string_buffer);
 
-	//sendHtmlHeader();
-	//httpClient.println("<h1>Not Found</h1>");
+	strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_http_xpowered_by])));
+	httpClient.println(string_buffer);
+
+	httpClient.println();
 }
