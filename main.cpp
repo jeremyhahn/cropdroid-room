@@ -4,6 +4,7 @@
 #include "DHT.h"
 #include "OneWire.h"
 #include "DallasTemperature.h"
+#include "EEPROM.h"
 
 #define DEBUG 1
 #define BUFSIZE 100
@@ -20,10 +21,11 @@ extern int  *__brkval;
 
 const int channel_size = 10;
 const int valid_channels[channel_size] = {
-	4, 5, 6, 7, 8, 9, A4, A5, A6, A7
+	4, 5, 6, 7, 8, 9,
+	A4, A5, A6, A7
 };
 
-const char string_initializing[] PROGMEM = "Initializing...";
+const char string_initializing[] PROGMEM = "Initializing room controller...";
 const char string_dhcp_failed[] PROGMEM = "DHCP Failed";
 const char string_http_200[] PROGMEM = "HTTP/1.1 200 OK";
 const char string_http_404[] PROGMEM = "HTTP/1.1 404 Not Found";
@@ -116,9 +118,6 @@ void switchOff(int pin);
 int availableMemory();
 void(* resetFunc) (void) = 0;
 
-byte mac[] = { 0x04, 0x02, 0x00, 0x00, 0x00, 0x01 };
-IPAddress ip(192,168,0,200);
-
 EthernetServer httpServer(80);
 EthernetClient httpClient;
 
@@ -141,12 +140,48 @@ void setup(void) {
 	  digitalWrite(i, LOW);
   }
 
-#if DEBUG
-  Serial.begin(115200);
+  #if DEBUG
+    Serial.begin(115200);
 
-  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_initializing])));
-  Serial.println(string_buffer);
-#endif
+    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_initializing])));
+    Serial.println(string_buffer);
+  #endif
+
+  byte value = EEPROM.read(0);
+
+  #if DEBUG
+    Serial.print("EEPROM: ");
+    Serial.println(value);
+  #endif
+
+  if(value == 255) {
+	EEPROM.write(0, 0x04);
+    EEPROM.write(1, 0x02);
+    EEPROM.write(2, 0x00);
+    EEPROM.write(4, 0x00);
+    EEPROM.write(5, 0x00);
+    EEPROM.write(6, 0x00);
+
+    EEPROM.write(7, 192);
+    EEPROM.write(8, 168);
+    EEPROM.write(9, 0);
+    EEPROM.write(10, 200);
+  }
+
+  byte mac[] = {
+    EEPROM.read(0),
+	EEPROM.read(1),
+	EEPROM.read(2),
+	EEPROM.read(3),
+	EEPROM.read(4),
+	EEPROM.read(5)
+  };
+  IPAddress ip(
+    EEPROM.read(6),
+	EEPROM.read(7),
+	EEPROM.read(8),
+    EEPROM.read(9)
+  );
 
   if(Ethernet.begin(mac) == 0) {
 	#if DEBUG
@@ -158,9 +193,11 @@ void setup(void) {
 
   httpServer.begin();
 
-  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_rest_address])));
-  Serial.println(string_buffer);
-  Serial.println(Ethernet.localIP());
+  #if DEBUG
+    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_rest_address])));
+    Serial.print(string_buffer);
+    Serial.println(Ethernet.localIP());
+  #endif
 
   roomDHT.begin();
 }
@@ -181,7 +218,7 @@ void loop() {
 
   digitalWrite(LED_BUILTIN, LOW);
 
-  delay(2000); // DHT22 requires 2 seconds between polls
+  delay(2000); // DHT22 requires min 2 seconds between polls
 }
 
 void calculateVPD(float temp, float rh) {
@@ -325,8 +362,8 @@ void handleWebRequest() {
 
 	bool reset = false;
 	char json[255];
-	char sPin[2];
-	char state[2];
+	char sPin[3];
+	char state[3];
 
 	if (httpClient) {
 
@@ -472,7 +509,7 @@ void handleWebRequest() {
 
 						#if DEBUG
 							Serial.print("/switch: ");
-							Serial.print(json);
+							Serial.println(json);
 						#endif
 
 						position == 1 ? switchOn(pin) : switchOff(pin);

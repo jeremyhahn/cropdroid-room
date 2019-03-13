@@ -1,2 +1,2 @@
 eclipse.preferences.version=1
-libraries=["aREST",{"package"\:"arduino","platform"\:"avr","library"\:"Wire"},"DallasTemperature",{"package"\:"arduino","platform"\:"avr","library"\:"SPI"},"OneWire","DHT sensor library","Ethernet"]
+libraries=[{"package"\:"arduino","platform"\:"avr","library"\:"EEPROM"},"aREST",{"package"\:"arduino","platform"\:"avr","library"\:"Wire"},"DallasTemperature",{"package"\:"arduino","platform"\:"avr","library"\:"SPI"},"OneWire","DHT sensor library","Ethernet"]
