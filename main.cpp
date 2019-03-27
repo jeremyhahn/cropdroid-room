@@ -6,7 +6,8 @@
 #include "DallasTemperature.h"
 #include "EEPROM.h"
 
-#define DEBUG 1
+#define DEBUG 0
+#define EEPROM_DEBUG 1
 #define BUFSIZE 100
 
 #define ONE_WIRE_BUS 2
@@ -24,6 +25,9 @@ const int valid_channels[channel_size] = {
 	4, 5, 6, 7, 8, 9,
 	A4, A5, A6, A7
 };
+
+const char json_bracket_open[] = "{";
+const char json_bracket_close[] = "}";
 
 const char string_initializing[] PROGMEM = "Initializing room controller...";
 const char string_dhcp_failed[] PROGMEM = "DHCP Failed";
@@ -47,6 +51,15 @@ const char string_json_key_water0[] PROGMEM = ",\"water0\":";
 const char string_json_key_water1[] PROGMEM = ",\"water1\":";
 const char string_json_key_photo[] PROGMEM = ",\"photo\":";
 const char string_json_key_channels[] PROGMEM = ",\"channels\":{";
+const char string_json_key_pin[] PROGMEM = "\"pin\":";
+const char string_json_key_position[] PROGMEM =  ",\"position:\"";
+const char string_json_key_value[] PROGMEM =  ",\"value:\"";
+const char string_json_key_address[] PROGMEM =  "\"address:\"";
+const char string_json_bracket_open[] PROGMEM = "{";
+const char string_json_bracket_close[] PROGMEM = "}";
+const char string_json_error_invalid_channel[] PROGMEM = "{\"error\":\"Invalid channel\"}";
+const char string_json_reboot_true PROGMEM = "{\"reboot\":true}";
+const char string_json_reset_true PROGMEM = "{\"reset\":true}";
 const char * const string_table[] PROGMEM = {
   string_initializing,
   string_dhcp_failed,
@@ -69,7 +82,16 @@ const char * const string_table[] PROGMEM = {
   string_json_key_water0,
   string_json_key_water1,
   string_json_key_photo,
-  string_json_key_channels
+  string_json_key_channels,
+  string_json_key_pin,
+  string_json_key_position,
+  string_json_key_value,
+  string_json_key_address,
+  string_json_bracket_open,
+  string_json_bracket_close,
+  string_json_error_invalid_channel,
+  string_json_reboot_true,
+  string_json_reset_true
 };
 int idx_initializing = 0,
     idx_dhcp_failed = 1,
@@ -92,13 +114,22 @@ int idx_initializing = 0,
 	idx_json_key_water0 = 18,
 	idx_json_key_water1 = 19,
 	idx_json_key_photo = 20,
-	idx_json_key_channels = 21;
+	idx_json_key_channels = 21,
+	idx_json_key_pin = 22,
+	idx_json_key_position = 23,
+	idx_json_key_value = 24,
+	idx_json_key_address = 25,
+	idx_json_key_bracket_open = 26,
+	idx_json_key_bracket_close = 27,
+	idx_json_error_invalid_channel = 28,
+	idx_json_reboot_true = 29,
+	idx_json_reset_true = 30;
 char string_buffer[50];
 char float_buffer[10];
 
-DHT roomDHT(DHT_ROOM_PIN, DHT22);
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
+DHT roomDHT(DHT_ROOM_PIN, DHT22);
 
 float roomTempF, roomTempC, roomHumidity, roomHeatIndex,
       pod0Temp, pod1Temp, CO2PPM, VPD = 0.0;
@@ -115,8 +146,25 @@ void handleWebRequest();
 void send404();
 void switchOn(int pin);
 void switchOff(int pin);
+void resetDefaults();
 int availableMemory();
 void(* resetFunc) (void) = 0;
+
+byte defaultMac[] = { 0x04, 0x02, 0x00, 0x00, 0x01, 0x01 };
+
+byte mac[] = {
+	EEPROM.read(0),
+	EEPROM.read(1),
+	EEPROM.read(2),
+	EEPROM.read(3),
+	EEPROM.read(4),
+	EEPROM.read(5)
+};
+IPAddress ip(
+  EEPROM.read(6),
+  EEPROM.read(7),
+  EEPROM.read(8),
+  EEPROM.read(9));
 
 EthernetServer httpServer(80);
 EthernetClient httpClient;
@@ -133,6 +181,8 @@ int main(void) {
 
 void setup(void) {
 
+  //EEPROM.write(0, 0x04);
+
   analogReference(DEFAULT);
 
   for(int i=0; i<channel_size; i++) {
@@ -140,65 +190,46 @@ void setup(void) {
 	  digitalWrite(i, LOW);
   }
 
-  #if DEBUG
+  #if DEBUG || EEPROM_DEBUG
     Serial.begin(115200);
 
     strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_initializing])));
     Serial.println(string_buffer);
   #endif
 
-  byte value = EEPROM.read(0);
+  byte macByte1 = EEPROM.read(0);
 
-  #if DEBUG
-    Serial.print("EEPROM: ");
-    Serial.println(value);
+  #if DEBUG || EEPROM_DEBUG
+    Serial.print("EEPROM.read(0): ");
+    Serial.println(macByte1);
   #endif
 
-  if(value == 255) {
-	EEPROM.write(0, 0x04);
-    EEPROM.write(1, 0x02);
-    EEPROM.write(2, 0x00);
-    EEPROM.write(4, 0x00);
-    EEPROM.write(5, 0x00);
-    EEPROM.write(6, 0x00);
-
-    EEPROM.write(7, 192);
-    EEPROM.write(8, 168);
-    EEPROM.write(9, 0);
-    EEPROM.write(10, 200);
+  if(macByte1 == 255) {
+    if(Ethernet.begin(defaultMac) == 0) {
+	  #if DEBUG
+	    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_dhcp_failed])));
+		Serial.println(string_buffer);
+	  #endif
+	  return;
+	}
   }
-
-  byte mac[] = {
-    EEPROM.read(0),
-	EEPROM.read(1),
-	EEPROM.read(2),
-	EEPROM.read(3),
-	EEPROM.read(4),
-	EEPROM.read(5)
-  };
-  IPAddress ip(
-    EEPROM.read(6),
-	EEPROM.read(7),
-	EEPROM.read(8),
-    EEPROM.read(9)
-  );
-
-  if(Ethernet.begin(mac) == 0) {
-	#if DEBUG
-      strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_dhcp_failed])));
-      Serial.println(string_buffer);
-	#endif
+  else {
     Ethernet.begin(mac, ip);
   }
 
-  httpServer.begin();
+  #if DEBUG || EEPROM_DEBUG
+    Serial.print("MAC: ");
+    for(int i=0; i<6; i++) {
+      Serial.print(mac[i], HEX);
+    }
+    Serial.println();
 
-  #if DEBUG
     strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_rest_address])));
     Serial.print(string_buffer);
     Serial.println(Ethernet.localIP());
   #endif
 
+  httpServer.begin();
   roomDHT.begin();
 }
 
@@ -360,8 +391,8 @@ void handleWebRequest() {
 	char clientline[BUFSIZE];
 	int index = 0;
 
-	bool reset = false;
-	char json[255];
+	bool reboot = false;
+	char json[275];
 	char sPin[3];
 	char state[3];
 
@@ -402,12 +433,10 @@ void handleWebRequest() {
 				  Serial.println(param2);
 				#endif
 
-				int address = atoi(param1);
-
 				// /status
 				if (strncmp(resource, "status", 6) == 0) {
 
-					strcpy(json, "{");
+					strcpy(json, json_bracket_open);
 
 					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_mem])));
 					  strcat(json, string_buffer);
@@ -482,9 +511,9 @@ void handleWebRequest() {
 							  strcat(json, ",");
 						  }
 					    }
-					  strcat(json, "}");
+					  strcat(json, json_bracket_close);
 
-					strcat(json, "}");
+					strcat(json, json_bracket_close);
 				}
 
 				// /switch/?     1 = on, else off
@@ -501,11 +530,18 @@ void handleWebRequest() {
 						}
 					}
 					if(valid) {
-						strcpy(json, "{\"pin\":");
-						strcat(json, param1);
-						strcat(json, ", \"position: \"");
-						strcat(json, param2);
-						strcat(json, "}");
+
+						strcpy(json, json_bracket_open);
+
+						  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_pin])));
+					      strcat(json, string_buffer);
+					      strcat(json, param1);
+
+					      strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_position])));
+						  strcat(json, string_buffer);
+						  strcat(json, param2);
+
+						strcat(json, json_bracket_close);
 
 						#if DEBUG
 							Serial.print("/switch: ");
@@ -515,23 +551,57 @@ void handleWebRequest() {
 						position == 1 ? switchOn(pin) : switchOff(pin);
 					}
 					else {
-						strcpy(json, "{\"error\":\"Invalid channel\"}");
+						strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_error_invalid_channel])));
+					    strcat(json, string_buffer);
 					}
+				}
+
+				// /eeprom
+				else if (strncmp(resource, "eeprom", 6) == 0) {
+					#if EEPROM_DEBUG
+						Serial.println("/eeprom");
+						Serial.println(param1);
+						Serial.println(param2);
+					#endif
+
+					EEPROM.write(atoi(param1), atoi(param2));
+
+					strcpy(json, json_bracket_open);
+
+					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_address])));
+					  strcat(json, string_buffer);
+					  strcat(json, param1);
+
+					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_value])));
+					  strcat(json, string_buffer);
+					  strcat(json, param2);
+
+					strcat(json, json_bracket_close);
 				}
 
 				// /reboot
 				else if (strncmp(resource, "reboot", 6) == 0) {
 					#if DEBUG
-						Serial.println("Rebooting...");
+						Serial.println("/reboot");
 					#endif
-					strcpy(json, "{\"reboot\":true}");
-					reset = true;
+					strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_reboot_true])));
+					strcat(json, string_buffer);
+					reboot = true;
+				}
+
+				// /reset
+				else if (strncmp(resource, "reset", 5) == 0) {
+					#if DEBUG
+						Serial.println("/reset");
+					#endif
+
+					resetDefaults();
+
+					strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_reset_true])));
+					strcat(json, string_buffer);
 				}
 
 				else {
-					#if DEBUG
-						Serial.println("404 NOT FOUND");
-					#endif
 					send404();
 					break;
 				}
@@ -558,7 +628,7 @@ void handleWebRequest() {
 	// close the connection:
 	httpClient.stop();
 
-	if(reset)  {
+	if(reboot)  {
 	  resetFunc();
 	}
 }
@@ -568,10 +638,27 @@ void send404() {
 	strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_http_404])));
 	httpClient.println(string_buffer);
 
+	#if DEBUG
+	  Serial.println(string_buffer);
+	#endif
+
 	strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_http_xpowered_by])));
 	httpClient.println(string_buffer);
 
 	httpClient.println();
+}
+
+void resetDefaults() {
+	EEPROM.write(0, defaultMac[0]);
+	EEPROM.write(1, defaultMac[1]);
+	EEPROM.write(2, defaultMac[2]);
+	EEPROM.write(3, defaultMac[3]);
+	EEPROM.write(4, defaultMac[4]);
+	EEPROM.write(5, defaultMac[5]);
+	EEPROM.write(6, 192);
+	EEPROM.write(7, 168);
+	EEPROM.write(8, 0);
+	EEPROM.write(9, 42);
 }
 
 int availableMemory() {
