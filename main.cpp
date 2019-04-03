@@ -34,7 +34,8 @@ const char string_dhcp_failed[] PROGMEM = "DHCP Failed";
 const char string_http_200[] PROGMEM = "HTTP/1.1 200 OK";
 const char string_http_404[] PROGMEM = "HTTP/1.1 404 Not Found";
 const char string_http_500[] PROGMEM = "HTTP/1.1 500 Internal Server Error";
-const char string_http_xpowered_by[] PROGMEM = "X-Powered-By: Harvest Room Controller v1.0";
+const char string_http_content_type_json[] PROGMEM = "Content-Type: application/json";
+const char string_http_xpowered_by[] PROGMEM = "X-Powered-By: CropDroid v1.0";
 const char string_rest_address[] PROGMEM = "REST service listening on: ";
 const char string_switch_on[] PROGMEM = "Switching on";
 const char string_switch_off[] PROGMEM = "Switching off";
@@ -66,6 +67,7 @@ const char * const string_table[] PROGMEM = {
   string_http_200,
   string_http_404,
   string_http_500,
+  string_http_content_type_json,
   string_http_xpowered_by,
   string_rest_address,
   string_switch_on,
@@ -98,32 +100,33 @@ int idx_initializing = 0,
 	idx_http_200 = 2,
 	idx_http_404 = 3,
 	idx_http_500 = 4,
-	idx_http_xpowered_by = 5,
-	idx_rest_address = 6,
-	idx_switch_on = 7,
-	idx_switch_off = 8,
-	idx_json_key_mem = 9,
-	idx_json_key_tempF = 10,
-	idx_json_key_tempC = 11,
-	idx_json_key_humidity = 12,
-	idx_json_key_heatIndex = 13,
-	idx_json_key_vpd = 14,
-	idx_json_key_pod0 = 15,
-	idx_json_key_pod1 = 16,
-	idx_json_key_co2 = 17,
-	idx_json_key_water0 = 18,
-	idx_json_key_water1 = 19,
-	idx_json_key_photo = 20,
-	idx_json_key_channels = 21,
-	idx_json_key_pin = 22,
-	idx_json_key_position = 23,
-	idx_json_key_value = 24,
-	idx_json_key_address = 25,
-	idx_json_key_bracket_open = 26,
-	idx_json_key_bracket_close = 27,
-	idx_json_error_invalid_channel = 28,
-	idx_json_reboot_true = 29,
-	idx_json_reset_true = 30;
+	idx_http_content_type_json = 5,
+	idx_http_xpowered_by = 6,
+	idx_rest_address = 7,
+	idx_switch_on = 8,
+	idx_switch_off = 9,
+	idx_json_key_mem = 10,
+	idx_json_key_tempF = 11,
+	idx_json_key_tempC = 12,
+	idx_json_key_humidity = 13,
+	idx_json_key_heatIndex = 14,
+	idx_json_key_vpd = 15,
+	idx_json_key_pod0 = 16,
+	idx_json_key_pod1 = 17,
+	idx_json_key_co2 = 18,
+	idx_json_key_water0 = 19,
+	idx_json_key_water1 = 20,
+	idx_json_key_photo = 21,
+	idx_json_key_channels = 22,
+	idx_json_key_pin = 23,
+	idx_json_key_position = 24,
+	idx_json_key_value = 25,
+	idx_json_key_address = 26,
+	idx_json_key_bracket_open = 27,
+	idx_json_key_bracket_close = 28,
+	idx_json_error_invalid_channel = 29,
+	idx_json_reboot_true = 30,
+	idx_json_reset_true = 31;
 char string_buffer[50];
 char float_buffer[10];
 
@@ -150,7 +153,7 @@ void resetDefaults();
 int availableMemory();
 void(* resetFunc) (void) = 0;
 
-byte defaultMac[] = { 0x04, 0x02, 0x00, 0x00, 0x01, 0x01 };
+byte defaultMac[] = { 0x04, 0x02, 0x00, 0x00, 0x00, 0x01 };
 
 byte mac[] = {
 	EEPROM.read(0),
@@ -614,6 +617,9 @@ void handleWebRequest() {
 				strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_http_xpowered_by])));
 				httpClient.println(string_buffer);
 
+				strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_http_content_type_json])));
+				httpClient.println(string_buffer);
+
 				httpClient.println();
 				httpClient.println(json);
 
@@ -658,7 +664,7 @@ void resetDefaults() {
 	EEPROM.write(6, 192);
 	EEPROM.write(7, 168);
 	EEPROM.write(8, 0);
-	EEPROM.write(9, 42);
+	EEPROM.write(9, 91);
 }
 
 int availableMemory() {
