@@ -1,5 +1,5 @@
 ORG := jeremyhahn
-PACKAGE := harvest.room
+PACKAGE := cropdroid.room
 TARGET_OS := linux
 
 AVRDUDE=/home/jhahn/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino14/bin/avrdude
@@ -10,13 +10,13 @@ CONF=-C/home/jhahn/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino14/etc
 default: flash
 
 flash:
-	$(AVRDUDE) -c usbasp -p m328p -u -U flash:w:build/Nano/harvest-room.hex
+	$(AVRDUDE) -c usbasp -p m328p -u -U flash:w:build/Nano/cropdroid-room.hex
 
 flash-nano:
-	avrdude -v -patmega328p -carduino -P/dev/ttyUSB1 -b115200 -D -U flash:w:build/Nano/harvest-room.hex
+	avrdude -v -patmega328p -carduino -P/dev/ttyUSB1 -b115200 -D -U flash:w:build/Nano/cropdroid-room.hex
 
 flash-mega:
-	$(AVRDUDE) -c usbasp -p m2560 -u -U flash:w:build/Mega/harvest-room.hex
+	$(AVRDUDE) -c usbasp -p m2560 -u -U flash:w:build/Mega/cropdroid-room.hex
 
 bootloader:
 	$(AVRDUDE) $(CONF) -v -patmega328p -cusbasp -Pusb -e -Ulock:w:0x3F:m -Uefuse:w:0xFD:m -Uhfuse:w:0xDA:m -Ulfuse:w:0xFF:m
