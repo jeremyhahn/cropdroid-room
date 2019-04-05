@@ -208,6 +208,7 @@ void setup(void) {
   #endif
 
   if(macByte1 == 255) {
+	resetDefaults();
     if(Ethernet.begin(defaultMac) == 0) {
 	  #if DEBUG
 	    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_dhcp_failed])));
@@ -429,7 +430,7 @@ void handleWebRequest() {
 				  Serial.print("Resource: ");
 				  Serial.println(resource);
 
-				  Serial.print("Parm1: ");
+				  Serial.print("Param1: ");
 				  Serial.println(param1);
 
 				  Serial.print("Param2: ");
@@ -529,18 +530,11 @@ void handleWebRequest() {
 				// /switch/?     1 = on, else off
 				else if (strncmp(resource, "switch", 7) == 0) {
 
+					bool valid = false;
 					int channel = atoi(param1);
 					int position = atoi(param2);
 
-					bool valid = false;
-					/*
-					for(int i=0; i<channel_size; i++) {
-						if(pin == valid_channels[i]) {
-							valid = true;
-							break;
-						}
-					}*/
-					if(channel > 0 && channel < (channel_size-1)) {
+					if(channel >= 0 && channel < (channel_size-1)) {
 						valid = true;
 					}
 
@@ -623,8 +617,6 @@ void handleWebRequest() {
 
 				strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_http_200])));
 				httpClient.println(string_buffer);
-
-				//httpClient.println("Access-Control-Allow-Origin: *");
 
 				strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_http_xpowered_by])));
 				httpClient.println(string_buffer);

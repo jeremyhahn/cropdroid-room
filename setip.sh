@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONTROLLER=192.168.0.208
+CONTROLLER=192.168.0.91
 
 curl http://$CONTROLLER/eeprom/0/04
 curl http://$CONTROLLER/eeprom/1/02
