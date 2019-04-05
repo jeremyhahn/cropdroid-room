@@ -21,7 +21,7 @@ extern int  __bss_end;
 extern int  *__brkval;
 
 const int channel_size = 10;
-const int valid_channels[channel_size] = {
+const int channels[channel_size] = {
 	4, 5, 6, 7, 8, 9,
 	A4, A5, A6, A7
 };
@@ -504,11 +504,18 @@ void handleWebRequest() {
 					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_channels])));
 					  strcat(json, string_buffer);
 					    for(int i=0; i<channel_size; i++) {
-						  itoa(valid_channels[i], sPin, 10);
-						  itoa(digitalRead(valid_channels[i]), state, 10);
-						  strcat(json, "\"c");
-						  strcat(json, sPin);
+						  itoa(channels[i], sPin, 10);
+						  itoa(digitalRead(channels[i]), state, 10);
+
+						  //strcat(json, "\"c");
+						  //strcat(json, sPin);
+						  //strcat(json, "\":");
+
+						  strcat(json, "\"");
+						  itoa(i, float_buffer, 10);
+						  strcat(json, float_buffer);
 						  strcat(json, "\":");
+
 						  strcat(json, state);
 						  if(i + 1 < channel_size) {
 							  strcat(json, ",");
@@ -522,16 +529,21 @@ void handleWebRequest() {
 				// /switch/?     1 = on, else off
 				else if (strncmp(resource, "switch", 7) == 0) {
 
-					int pin = atoi(param1);
+					int channel = atoi(param1);
 					int position = atoi(param2);
 
 					bool valid = false;
+					/*
 					for(int i=0; i<channel_size; i++) {
 						if(pin == valid_channels[i]) {
 							valid = true;
 							break;
 						}
+					}*/
+					if(channel > 0 && channel < (channel_size-1)) {
+						valid = true;
 					}
+
 					if(valid) {
 
 						strcpy(json, json_bracket_open);
@@ -551,7 +563,7 @@ void handleWebRequest() {
 							Serial.println(json);
 						#endif
 
-						position == 1 ? switchOn(pin) : switchOff(pin);
+						position == 1 ? switchOn(channels[channel]) : switchOff(channels[channel]);
 					}
 					else {
 						strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_error_invalid_channel])));
