@@ -22,8 +22,7 @@ extern int  *__brkval;
 
 const int channel_size = 10;
 const int channels[channel_size] = {
-	4, 5, 6, 7, 8, 9,
-	A4, A5, A6, A7
+	4, 5, 6, 7, 8, 9, A4, A5, A6, A7
 };
 
 const char json_bracket_open[] = "{";
