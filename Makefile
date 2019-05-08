@@ -13,7 +13,7 @@ flash:
 	$(AVRDUDE) -c usbasp -p m328p -u -U flash:w:build/Nano/cropdroid-room.hex
 
 flash-nano:
-	avrdude -v -patmega328p -carduino -P/dev/ttyUSB1 -b115200 -D -U flash:w:build/Nano/cropdroid-room.hex
+	avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b115200 -D -U flash:w:build/Nano/cropdroid-room.hex
 
 flash-mega:
 	$(AVRDUDE) -c usbasp -p m2560 -u -U flash:w:build/Mega/cropdroid-room.hex

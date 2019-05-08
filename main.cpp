@@ -11,18 +11,20 @@
 #define BUFSIZE 100
 
 #define ONE_WIRE_BUS 2
-#define DHT_ROOM_PIN 3
+#define DHT_ROOM_PIN1 3
 #define CO2_PIN A0
 #define WATER0_PIN A1
 #define WATER1_PIN A2
 #define PHOTO_PIN A3
+#define DHT_ROOM_PIN2 A4
+#define DHT_ROOM_PIN3 A5
 
 extern int  __bss_end;
 extern int  *__brkval;
 
-const int channel_size = 10;
+const int channel_size = 8;
 const int channels[channel_size] = {
-	4, 5, 6, 7, 8, 9, A4, A5, A6, A7
+	4, 5, 6, 7, 8, 9, A6, A7
 };
 
 const char json_bracket_open[] = "{";
@@ -39,10 +41,18 @@ const char string_rest_address[] PROGMEM = "REST service listening on: ";
 const char string_switch_on[] PROGMEM = "Switching on";
 const char string_switch_off[] PROGMEM = "Switching off";
 const char string_json_key_mem[] PROGMEM = "\"mem\":";
-const char string_json_key_tempF[] PROGMEM = ",\"tempF\":";
-const char string_json_key_tempC[] PROGMEM = ",\"tempC\":";
-const char string_json_key_humidity[] PROGMEM = ",\"humidity\":";
-const char string_json_key_heatIndex[] PROGMEM = ",\"heatIndex\":";
+const char string_json_key_tempF0[] PROGMEM = ",\"tempF0\":";
+const char string_json_key_tempC0[] PROGMEM = ",\"tempC0\":";
+const char string_json_key_humidity0[] PROGMEM = ",\"humidity0\":";
+const char string_json_key_heatIndex0[] PROGMEM = ",\"heatIndex0\":";
+const char string_json_key_tempF1[] PROGMEM = ",\"tempF1\":";
+const char string_json_key_tempC1[] PROGMEM = ",\"tempC1\":";
+const char string_json_key_humidity1[] PROGMEM = ",\"humidity1\":";
+const char string_json_key_heatIndex1[] PROGMEM = ",\"heatIndex1\":";
+const char string_json_key_tempF2[] PROGMEM = ",\"tempF2\":";
+const char string_json_key_tempC2[] PROGMEM = ",\"tempC2\":";
+const char string_json_key_humidity2[] PROGMEM = ",\"humidity2\":";
+const char string_json_key_heatIndex2[] PROGMEM = ",\"heatIndex2\":";
 const char string_json_key_vpd[] PROGMEM = ",\"vpd\":";
 const char string_json_key_pod0[] PROGMEM = ",\"pod0\":";
 const char string_json_key_pod1[] PROGMEM = ",\"pod1\":";
@@ -51,7 +61,8 @@ const char string_json_key_water0[] PROGMEM = ",\"water0\":";
 const char string_json_key_water1[] PROGMEM = ",\"water1\":";
 const char string_json_key_photo[] PROGMEM = ",\"photo\":";
 const char string_json_key_channels[] PROGMEM = ",\"channels\":{";
-const char string_json_key_pin[] PROGMEM = "\"pin\":";
+const char string_json_key_channel[] PROGMEM = "\"channel\":";
+const char string_json_key_pin[] PROGMEM = ",\"pin\":";
 const char string_json_key_position[] PROGMEM =  ",\"position\":";
 const char string_json_key_value[] PROGMEM =  ",\"value\":";
 const char string_json_key_address[] PROGMEM =  "\"address\":";
@@ -72,10 +83,18 @@ const char * const string_table[] PROGMEM = {
   string_switch_on,
   string_switch_off,
   string_json_key_mem,
-  string_json_key_tempF,
-  string_json_key_tempC,
-  string_json_key_humidity,
-  string_json_key_heatIndex,
+  string_json_key_tempF0,
+  string_json_key_tempC0,
+  string_json_key_humidity0,
+  string_json_key_heatIndex0,
+  string_json_key_tempF1,
+  string_json_key_tempC1,
+  string_json_key_humidity1,
+  string_json_key_heatIndex1,
+  string_json_key_tempF2,
+  string_json_key_tempC2,
+  string_json_key_humidity2,
+  string_json_key_heatIndex2,
   string_json_key_vpd,
   string_json_key_pod0,
   string_json_key_pod1,
@@ -84,6 +103,7 @@ const char * const string_table[] PROGMEM = {
   string_json_key_water1,
   string_json_key_photo,
   string_json_key_channels,
+  string_json_key_channel,
   string_json_key_pin,
   string_json_key_position,
   string_json_key_value,
@@ -105,35 +125,48 @@ int idx_initializing = 0,
 	idx_switch_on = 8,
 	idx_switch_off = 9,
 	idx_json_key_mem = 10,
-	idx_json_key_tempF = 11,
-	idx_json_key_tempC = 12,
-	idx_json_key_humidity = 13,
-	idx_json_key_heatIndex = 14,
-	idx_json_key_vpd = 15,
-	idx_json_key_pod0 = 16,
-	idx_json_key_pod1 = 17,
-	idx_json_key_co2 = 18,
-	idx_json_key_water0 = 19,
-	idx_json_key_water1 = 20,
-	idx_json_key_photo = 21,
-	idx_json_key_channels = 22,
-	idx_json_key_pin = 23,
-	idx_json_key_position = 24,
-	idx_json_key_value = 25,
-	idx_json_key_address = 26,
-	idx_json_key_bracket_open = 27,
-	idx_json_key_bracket_close = 28,
-	idx_json_error_invalid_channel = 29,
-	idx_json_reboot_true = 30,
-	idx_json_reset_true = 31;
+	idx_json_key_tempF0 = 11,
+	idx_json_key_tempC0 = 12,
+	idx_json_key_humidity0 = 13,
+	idx_json_key_heatIndex0 = 14,
+	idx_json_key_tempF1 = 15,
+	idx_json_key_tempC1 = 16,
+	idx_json_key_humidity1 = 17,
+	idx_json_key_heatIndex1 = 18,
+	idx_json_key_tempF2 = 19,
+	idx_json_key_tempC2 = 20,
+	idx_json_key_humidity2 = 21,
+	idx_json_key_heatIndex2 = 22,
+	idx_json_key_vpd = 23,
+	idx_json_key_pod0 = 24,
+	idx_json_key_pod1 = 25,
+	idx_json_key_co2 = 26,
+	idx_json_key_water0 = 27,
+	idx_json_key_water1 = 28,
+	idx_json_key_photo = 29,
+	idx_json_key_channels = 30,
+	idx_json_key_channel = 31,
+	idx_json_key_pin = 32,
+	idx_json_key_position = 33,
+	idx_json_key_value = 34,
+	idx_json_key_address = 35,
+	idx_json_key_bracket_open = 36,
+	idx_json_key_bracket_close = 37,
+	idx_json_error_invalid_channel = 38,
+	idx_json_reboot_true = 39,
+	idx_json_reset_true = 40;
 char string_buffer[50];
 char float_buffer[10];
 
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
-DHT roomDHT(DHT_ROOM_PIN, DHT22);
+DHT roomDHT0(DHT_ROOM_PIN1, DHT22);
+DHT roomDHT1(DHT_ROOM_PIN2, DHT22);
+DHT roomDHT2(DHT_ROOM_PIN3, DHT22);
 
-float roomTempF, roomTempC, roomHumidity, roomHeatIndex,
+float roomTempF0, roomTempC0, roomHumidity0, roomHeatIndex0,
+	  roomTempF1, roomTempC1, roomHumidity1, roomHeatIndex1,
+	  roomTempF2, roomTempC2, roomHumidity2, roomHeatIndex2,
       pod0Temp, pod1Temp, CO2PPM, VPD = 0.0;
 
 int waterLevel0, waterLevel1, photo = 0;
@@ -183,13 +216,13 @@ int main(void) {
 
 void setup(void) {
 
-  //EEPROM.write(0, 0x04);
+  //EEPROM.write(0, 255);
 
   analogReference(DEFAULT);
 
   for(int i=0; i<channel_size; i++) {
-	  pinMode(i, OUTPUT);
-	  digitalWrite(i, LOW);
+    pinMode(channels[i], OUTPUT);
+    digitalWrite(channels[i], LOW);
   }
 
   #if DEBUG || EEPROM_DEBUG
@@ -233,7 +266,9 @@ void setup(void) {
   #endif
 
   httpServer.begin();
-  roomDHT.begin();
+  roomDHT0.begin();
+  roomDHT1.begin();
+  roomDHT2.begin();
 }
 
 void loop() {
@@ -244,7 +279,7 @@ void loop() {
   readPodTemps();
   readRoomTempHumidity();
   readPhoto();
-  calculateVPD(roomTempC, roomHumidity);
+  calculateVPD(roomTempC0, roomHumidity0);
   co2ppm();
   readWaterLevels();
 
@@ -293,22 +328,39 @@ void readPhoto() {
 #endif
 }
 
+float zeroIfNan(float number) {
+  if(isnan(number)) {
+	number = 0.0;
+  }
+  return number;
+}
+
 void readRoomTempHumidity() {
 
-  roomTempC = roomDHT.readTemperature(false);
-  roomTempF = roomDHT.convertCtoF(roomTempC);
-  roomHumidity = roomDHT.readHumidity();
-  roomHeatIndex = roomDHT.computeHeatIndex(roomTempF, roomHumidity);
+  roomTempC0 = zeroIfNan(roomDHT0.readTemperature(false));
+  roomTempF0 = zeroIfNan(roomDHT0.convertCtoF(roomTempC0));
+  roomHumidity0 = zeroIfNan(roomDHT0.readHumidity());
+  roomHeatIndex0 = zeroIfNan(roomDHT0.computeHeatIndex(roomTempF0, roomHumidity0));
+
+  roomTempC1 = zeroIfNan(roomDHT1.readTemperature(false));
+  roomTempF1 = zeroIfNan(roomDHT1.convertCtoF(roomTempC1));
+  roomHumidity1 = zeroIfNan(roomDHT1.readHumidity());
+  roomHeatIndex1 = zeroIfNan(roomDHT1.computeHeatIndex(roomTempF1, roomHumidity1));
+
+  roomTempC2 = zeroIfNan(roomDHT2.readTemperature(false));
+  roomTempF2 = zeroIfNan(roomDHT2.convertCtoF(roomTempC2));
+  roomHumidity2 = zeroIfNan(roomDHT2.readHumidity());
+  roomHeatIndex2 = zeroIfNan(roomDHT2.computeHeatIndex(roomTempF2, roomHumidity2));
 
 #if DEBUG
   Serial.print("TempF: ");
-  Serial.println(roomTempF);
+  Serial.println(roomTempF0);
   Serial.print("TempC: ");
-  Serial.println(roomTempC);
+  Serial.println(roomTempC0);
   Serial.print("Humidity: ");
-  Serial.println(roomHumidity);
+  Serial.println(roomHumidity0);
   Serial.print("HeatIndex: ");
-  Serial.println(roomHeatIndex);
+  Serial.println(roomHeatIndex0);
 #endif
 }
 
@@ -446,24 +498,64 @@ void handleWebRequest() {
 					  itoa(availableMemory(), float_buffer, 10);
 					  strcat(json, float_buffer);
 
-					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_tempF])));
+					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_tempF0])));
 					  strcat(json, string_buffer);
-					  dtostrf(roomTempF, 4, 2, float_buffer);
+					  dtostrf(roomTempF0, 4, 2, float_buffer);
 					  strcat(json, float_buffer);
 
-					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_tempC])));
+					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_tempC0])));
 					  strcat(json, string_buffer);
-                      dtostrf(roomTempC, 4, 2, float_buffer);
+                      dtostrf(roomTempC0, 4, 2, float_buffer);
                       strcat(json, float_buffer);
 
-                      strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_humidity])));
+                      strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_humidity0])));
 					  strcat(json, string_buffer);
-                      dtostrf(roomHumidity, 4, 2, float_buffer);
+                      dtostrf(roomHumidity0, 4, 2, float_buffer);
 					  strcat(json, float_buffer);
 
-					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_heatIndex])));
+					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_heatIndex0])));
 					  strcat(json, string_buffer);
-					  dtostrf(roomHeatIndex, 4, 2, float_buffer);
+					  dtostrf(roomHeatIndex0, 4, 2, float_buffer);
+					  strcat(json, float_buffer);
+
+					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_tempF1])));
+					  strcat(json, string_buffer);
+					  dtostrf(roomTempF1, 4, 2, float_buffer);
+					  strcat(json, float_buffer);
+
+					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_tempC1])));
+					  strcat(json, string_buffer);
+					  dtostrf(roomTempC1, 4, 2, float_buffer);
+					  strcat(json, float_buffer);
+
+					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_humidity1])));
+					  strcat(json, string_buffer);
+					  dtostrf(roomHumidity1, 4, 2, float_buffer);
+					  strcat(json, float_buffer);
+
+					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_heatIndex1])));
+					  strcat(json, string_buffer);
+					  dtostrf(roomHeatIndex1, 4, 2, float_buffer);
+					  strcat(json, float_buffer);
+
+					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_tempF2])));
+					  strcat(json, string_buffer);
+					  dtostrf(roomTempF2, 4, 2, float_buffer);
+					  strcat(json, float_buffer);
+
+					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_tempC2])));
+					  strcat(json, string_buffer);
+					  dtostrf(roomTempC2, 4, 2, float_buffer);
+					  strcat(json, float_buffer);
+
+					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_humidity2])));
+					  strcat(json, string_buffer);
+					  dtostrf(roomHumidity2, 4, 2, float_buffer);
+					  strcat(json, float_buffer);
+
+					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_heatIndex2])));
+					  strcat(json, string_buffer);
+					  dtostrf(roomHeatIndex2, 4, 2, float_buffer);
 					  strcat(json, float_buffer);
 
 					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_vpd])));
@@ -539,15 +631,23 @@ void handleWebRequest() {
 
 					if(valid) {
 
+						position == 1 ? switchOn(channels[channel]) : switchOff(channels[channel]);
+
 						strcpy(json, json_bracket_open);
 
-						  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_pin])));
-					      strcat(json, string_buffer);
-					      strcat(json, param1);
-
-					      strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_position])));
+						  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_channel])));
 						  strcat(json, string_buffer);
-						  strcat(json, param2);
+						  strcat(json, param1);
+
+						  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_pin])));
+						  strcat(json, string_buffer);
+						  itoa(channels[channel], string_buffer, 10);
+						  strcat(json, string_buffer);
+
+						  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_position])));
+						  strcat(json, string_buffer);
+						  itoa(digitalRead(channels[channel]), string_buffer, 10);
+						  strcat(json, string_buffer);
 
 						strcat(json, json_bracket_close);
 
@@ -555,8 +655,6 @@ void handleWebRequest() {
 							Serial.print("/switch: ");
 							Serial.println(json);
 						#endif
-
-						position == 1 ? switchOn(channels[channel]) : switchOff(channels[channel]);
 					}
 					else {
 						strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_error_invalid_channel])));
