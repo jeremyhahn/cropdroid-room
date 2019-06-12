@@ -11,5 +11,5 @@ curl http://$CONTROLLER/eeprom/5/01
 curl http://$CONTROLLER/eeprom/6/192
 curl http://$CONTROLLER/eeprom/7/168
 curl http://$CONTROLLER/eeprom/8/0
-curl http://$CONTROLLER/eeprom/9/50
+curl http://$CONTROLLER/eeprom/9/51
 curl http://$CONTROLLER/reboot

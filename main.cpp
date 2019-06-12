@@ -621,15 +621,10 @@ void handleWebRequest() {
 				// /switch/?     1 = on, else off
 				else if (strncmp(resource, "switch", 7) == 0) {
 
-					bool valid = false;
 					int channel = atoi(param1);
 					int position = atoi(param2);
 
 					if(channel >= 0 && channel < (channel_size-1)) {
-						valid = true;
-					}
-
-					if(valid) {
 
 						position == 1 ? switchOn(channels[channel]) : switchOff(channels[channel]);
 
