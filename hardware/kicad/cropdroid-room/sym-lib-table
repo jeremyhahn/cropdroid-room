@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name PPTC151LFBN-RC)(type Legacy)(uri /home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries/PPTC151LFBN-RC/PPTC151LFBN-RC.lib)(options "")(descr ""))
+  (lib (name T9AS1D12-15)(type Legacy)(uri /home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries/T9AS1D12-15/T9AS1D12-15.lib)(options "")(descr ""))
+)

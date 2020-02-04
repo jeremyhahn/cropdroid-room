@@ -1,0 +1,352 @@
+EESchema-LIBRARY Version 2.4
+#encoding utf-8
+#
+# Device_D_Photo
+#
+DEF Device_D_Photo D 0 20 N N 1 F N
+F0 "D" 20 70 50 H V L CNN
+F1 "Device_D_Photo" -40 -110 50 H V C CNN
+F2 "" -50 0 50 H I C CNN
+F3 "" -50 0 50 H I C CNN
+DRAW
+P 2 0 1 10 -100 50 -100 -50 N
+P 2 0 1 0 -80 70 -60 70 N
+P 2 0 1 0 0 0 -100 0 N
+P 3 0 1 0 -20 130 -80 70 -80 90 N
+P 4 0 1 10 0 -50 0 50 -100 0 0 -50 N
+P 5 0 1 0 30 130 -30 70 -30 90 -30 70 -10 70 N
+X K 1 -200 0 100 R 50 50 1 1 P
+X A 2 100 0 100 L 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# Device_LED
+#
+DEF Device_LED D 0 40 N N 1 F N
+F0 "D" 0 100 50 H V C CNN
+F1 "Device_LED" 0 -100 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ LED*
+ LED_SMD:*
+ LED_THT:*
+$ENDFPLIST
+DRAW
+P 2 0 1 10 -50 -50 -50 50 N
+P 2 0 1 0 -50 0 50 0 N
+P 4 0 1 10 50 -50 50 50 -50 0 50 -50 N
+P 5 0 1 0 -120 -30 -180 -90 -150 -90 -180 -90 -180 -60 N
+P 5 0 1 0 -70 -30 -130 -90 -100 -90 -130 -90 -130 -60 N
+X K 1 -150 0 100 R 50 50 1 1 P
+X A 2 150 0 100 L 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# Device_R
+#
+DEF Device_R R 0 0 N Y 1 F N
+F0 "R" 80 0 50 V V C CNN
+F1 "Device_R" 0 0 50 V V C CNN
+F2 "" -70 0 50 V I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ R_*
+$ENDFPLIST
+DRAW
+S -40 -100 40 100 0 1 10 N
+X ~ 1 0 150 50 D 50 50 1 1 P
+X ~ 2 0 -150 50 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# Diode_1N4001
+#
+DEF Diode_1N4001 D 0 40 N N 1 F N
+F0 "D" 0 100 50 H V C CNN
+F1 "Diode_1N4001" 0 -100 50 H V C CNN
+F2 "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal" 0 -175 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+ALIAS 1N4002 1N4003 1N4004 1N4005 1N4006 1N4007 BA157 BA158 BA159
+$FPLIST
+ D*DO?41*
+$ENDFPLIST
+DRAW
+P 2 0 1 10 -50 50 -50 -50 N
+P 2 0 1 0 50 0 -50 0 N
+P 4 0 1 10 50 50 50 -50 -50 0 50 50 N
+X K 1 -150 0 100 R 50 50 1 1 P
+X A 2 150 0 100 L 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# PPTC151LFBN-RC_PPTC151LFBN-RC
+#
+DEF PPTC151LFBN-RC_PPTC151LFBN-RC U 0 40 Y Y 1 L N
+F0 "U" 0 0 50 H I L BNN
+F1 "PPTC151LFBN-RC_PPTC151LFBN-RC" 0 0 50 H I L BNN
+F2 "PPTC151LFBN-RC" 0 0 50 H I L BNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 0 0 10 -200 -1600 400 -1600 N
+P 2 0 0 10 -200 1600 -200 -1600 N
+P 2 0 0 10 400 -1600 400 1600 N
+P 2 0 0 10 400 1600 -200 1600 N
+X P$1 P$1 600 1400 200 L 40 40 0 0 B
+X P$10 P$10 600 -400 200 L 40 40 0 0 B
+X P$11 P$11 600 -600 200 L 40 40 0 0 B
+X P$12 P$12 600 -800 200 L 40 40 0 0 B
+X P$13 P$13 600 -1000 200 L 40 40 0 0 B
+X P$14 P$14 600 -1200 200 L 40 40 0 0 B
+X P$15 P$15 600 -1400 200 L 40 40 0 0 B
+X P$2 P$2 600 1200 200 L 40 40 0 0 B
+X P$3 P$3 600 1000 200 L 40 40 0 0 B
+X P$4 P$4 600 800 200 L 40 40 0 0 B
+X P$5 P$5 600 600 200 L 40 40 0 0 B
+X P$6 P$6 600 400 200 L 40 40 0 0 B
+X P$7 P$7 600 200 200 L 40 40 0 0 B
+X P$8 P$8 600 0 200 L 40 40 0 0 B
+X P$9 P$9 600 -200 200 L 40 40 0 0 B
+ENDDRAW
+ENDDEF
+#
+# T9AS1D12-15_T9AS1D12-15
+#
+DEF T9AS1D12-15_T9AS1D12-15 K 0 40 Y N 1 L N
+F0 "K" -200 320 50 H V L BNN
+F1 "T9AS1D12-15_T9AS1D12-15" -200 -401 50 H V L BNN
+F2 "RELAY_T9AS1D12-15" 0 0 50 H I L BNN
+F3 "https://www.te.com/usa-en/product-1-1393210-4.html?te_bu=Cor&te_type=disp&te_campaign=seda_glo_cor-seda-global-disp-prtnr-fy19-seda-model-bom-cta_sma-317_1&elqCampaignId=32493" 0 0 50 H I L BNN
+F4 "1-1393210-4" 0 0 50 H I L BNN
+DRAW
+C 100 0 10 0 0 20 N
+P 2 0 0 10 -200 -300 -200 300 N
+P 2 0 0 10 -200 -100 -100 -100 N
+P 2 0 0 10 -200 100 -100 100 N
+P 2 0 0 10 -200 300 200 300 N
+P 2 0 0 10 -150 -25 -100 -50 N
+P 2 0 0 10 -100 -50 -100 -100 N
+P 2 0 0 10 -100 50 -50 25 N
+P 2 0 0 10 -100 100 -100 50 N
+P 2 0 0 10 -50 25 -150 -25 N
+P 2 0 0 10 100 0 0 -200 N
+P 2 0 0 10 100 0 100 200 N
+P 2 0 0 10 200 -300 -200 -300 N
+P 2 0 0 10 200 -200 100 -200 N
+P 2 0 0 10 200 200 100 200 N
+P 2 0 0 10 200 300 200 -300 N
+P 4 0 0 10 100 -200 140 -180 110 -200 140 -220 F
+X A1 1 -300 100 100 R 40 40 0 0 P
+X A2 2 -300 -100 100 R 40 40 0 0 P
+X C 3 300 200 100 L 40 40 0 0 P
+X NO 4 300 -200 100 L 40 40 0 0 P
+ENDDRAW
+ENDDEF
+#
+# dk_Barrel-Audio-Connectors_SJ1-3523N
+#
+DEF dk_Barrel-Audio-Connectors_SJ1-3523N CON 0 2 Y Y 1 F N
+F0 "CON" -300 250 60 H V L CNN
+F1 "dk_Barrel-Audio-Connectors_SJ1-3523N" -50 -250 60 H V C CNN
+F2 "digikey-footprints:Headphone_Jack_3.5mm_SJ1-3523N" 200 200 60 H I L CNN
+F3 "https://www.cui.com/product/resource/digikeypdf/sj1-352xn_series.pdf" 200 300 60 H I L CNN
+F4 "CP1-3523N-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "SJ1-3523N" 200 500 60 H I L CNN "MPN"
+F6 "Connectors, Interconnects" 200 600 60 H I L CNN "Category"
+F7 "Barrel - Audio Connectors" 200 700 60 H I L CNN "Family"
+F8 "https://www.cui.com/product/resource/digikeypdf/sj1-352xn_series.pdf" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "/product-detail/en/cui-inc/SJ1-3523N/CP1-3523N-ND/738689" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "CONN JACK STEREO 3.5MM R/A" 200 1000 60 H I L CNN "Description"
+F11 "CUI Inc." 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
+DRAW
+S 200 200 -300 -200 0 1 0 f
+P 4 0 1 0 200 0 100 0 50 -50 0 0 N
+P 4 0 1 0 200 100 0 100 -50 50 -100 100 N
+P 6 0 1 0 200 -100 -150 -100 -150 100 -200 100 -200 -50 -150 -50 N
+X S 1 400 -100 200 L 50 50 1 1 P
+X T 2 400 0 200 L 50 50 1 1 P
+X R 3 400 100 200 L 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# dk_Barrel-Power-Connectors_PJ-102A
+#
+DEF dk_Barrel-Power-Connectors_PJ-102A J 0 40 Y Y 1 F N
+F0 "J" 0 100 50 H V C CNN
+F1 "dk_Barrel-Power-Connectors_PJ-102A" 0 -250 50 H V C CNN
+F2 "digikey-footprints:Barrel_Jack_5.5mmODx2.1mmID_PJ-102A" 200 200 60 H I L CNN
+F3 "https://www.cui.com/product/resource/digikeypdf/pj-102a.pdf" 200 300 60 H I L CNN
+F4 "CP-102A-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "PJ-102A" 200 500 60 H I L CNN "MPN"
+F6 "Connectors, Interconnects" 200 600 60 H I L CNN "Category"
+F7 "Barrel - Power Connectors" 200 700 60 H I L CNN "Family"
+F8 "https://www.cui.com/product/resource/digikeypdf/pj-102a.pdf" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "/product-detail/en/cui-inc/PJ-102A/CP-102A-ND/275425" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "CONN PWR JACK 2X5.5MM SOLDER" 200 1000 60 H I L CNN "Description"
+F11 "CUI Inc." 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
+DRAW
+A -175 0 25 901 -901 0 1 0 N -175 25 -175 -25
+S -25 50 0 -50 0 1 0 N
+P 2 0 1 0 -25 -25 -175 -25 N
+P 2 0 1 0 -25 25 -175 25 N
+P 3 0 1 0 0 -100 -50 -100 -100 -100 N
+P 4 0 1 0 0 -200 -150 -200 -200 -150 -250 -200 N
+P 5 0 1 0 -100 -100 -125 -100 -100 -150 -75 -100 -100 -100 N
+X ~ 1 100 0 100 L 50 50 1 1 P
+X ~ 2 100 -200 100 L 50 50 1 1 P
+X ~ 3 100 -100 100 L 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# dk_Rectangular-Connectors-Headers-Male-Pins_640456-3
+#
+DEF dk_Rectangular-Connectors-Headers-Male-Pins_640456-3 J 0 40 Y Y 1 F N
+F0 "J" -100 50 50 H V R CNN
+F1 "dk_Rectangular-Connectors-Headers-Male-Pins_640456-3" 100 -150 50 H V C CNN
+F2 "digikey-footprints:PinHeader_1x3_P2.54_Drill1.1mm" 200 200 60 H I L CNN
+F3 "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=640456&DocType=Customer+Drawing&DocLang=English" 200 300 60 H I L CNN
+F4 "A19470-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "640456-3" 200 500 60 H I L CNN "MPN"
+F6 "Connectors, Interconnects" 200 600 60 H I L CNN "Category"
+F7 "Rectangular Connectors - Headers, Male Pins" 200 700 60 H I L CNN "Family"
+F8 "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=640456&DocType=Customer+Drawing&DocLang=English" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "/product-detail/en/te-connectivity-amp-connectors/640456-3/A19470-ND/259010" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "CONN HEADER VERT 3POS 2.54MM" 200 1000 60 H I L CNN "Description"
+F11 "TE Connectivity AMP Connectors" 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
+DRAW
+S -50 0 250 -100 1 1 0 f
+S -10 -45 10 -65 1 1 0 F
+S 90 -45 110 -65 1 1 0 F
+S 190 -45 210 -65 1 1 0 F
+X ~ 1 0 100 100 D 50 50 1 1 P
+X ~ 2 100 100 100 D 50 50 1 1 P
+X ~ 3 200 100 100 D 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# dk_Terminal-Blocks-Wire-to-Board_OSTTC020162
+#
+DEF dk_Terminal-Blocks-Wire-to-Board_OSTTC020162 J 0 40 Y Y 1 F N
+F0 "J" -100 50 50 H V R CNN
+F1 "dk_Terminal-Blocks-Wire-to-Board_OSTTC020162" 50 -100 50 H V C CNN
+F2 "digikey-footprints:Term_Block_1x2_P5mm" 200 200 60 H I L CNN
+F3 "http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf" 200 300 60 H I L CNN
+F4 "ED2600-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "OSTTC020162" 200 500 60 H I L CNN "MPN"
+F6 "Connectors, Interconnects" 200 600 60 H I L CNN "Category"
+F7 "Terminal Blocks - Wire to Board" 200 700 60 H I L CNN "Family"
+F8 "http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "/product-detail/en/on-shore-technology-inc/OSTTC020162/ED2600-ND/614549" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "TERM BLK 2POS SIDE ENTRY 5MM PCB" 200 1000 60 H I L CNN "Description"
+F11 "On Shore Technology Inc." 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
+DRAW
+C 0 0 25 1 1 0 N
+C 100 0 25 1 1 0 N
+S -50 100 150 -50 1 1 0 f
+P 2 1 1 0 0 25 0 -25 N
+P 2 1 1 0 25 0 -25 0 N
+P 2 1 1 0 75 0 125 0 N
+P 2 1 1 0 100 25 100 -25 N
+X ~ 1 0 200 100 D 50 50 1 1 P
+X ~ 2 100 200 100 D 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# dk_Transistors-Bipolar-BJT-Arrays_ULN2003AN
+#
+DEF dk_Transistors-Bipolar-BJT-Arrays_ULN2003AN Q 0 0 Y Y 1 F N
+F0 "Q" -165 544 60 H V C CNN
+F1 "dk_Transistors-Bipolar-BJT-Arrays_ULN2003AN" 59 -455 60 H V L CNN
+F2 "digikey-footprints:DIP-16_W7.62mm" 200 200 60 H I L CNN
+F3 "http://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=http%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Fuln2003a" 200 300 60 H I L CNN
+F4 "296-1979-5-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "ULN2003AN" 200 500 60 H I L CNN "MPN"
+F6 "Discrete Semiconductor Products" 200 600 60 H I L CNN "Category"
+F7 "Transistors - Bipolar (BJT) - Arrays" 200 700 60 H I L CNN "Family"
+F8 "http://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=http%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Fuln2003a" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "/product-detail/en/texas-instruments/ULN2003AN/296-1979-5-ND/277624" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "IC PWR RELAY 7NPN 1:1 16DIP" 200 1000 60 H I L CNN "Description"
+F11 "Texas Instruments" 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
+DRAW
+C -40 -300 10 0 1 0 N
+C -40 -100 10 0 1 0 N
+C -40 100 10 0 1 0 N
+C -40 300 10 0 1 0 N
+C 60 -200 10 0 1 0 N
+C 60 0 10 0 1 0 N
+C 60 200 10 0 1 0 N
+S -200 500 100 -400 0 1 0 f
+P 2 0 1 0 -200 -200 -50 -200 N
+P 2 0 1 0 -200 300 -150 300 N
+P 2 0 1 0 -150 -300 -200 -300 N
+P 2 0 1 0 -150 -100 -200 -100 N
+P 2 0 1 0 -150 100 -200 100 N
+P 2 0 1 0 -50 0 -200 0 N
+P 2 0 1 0 -50 200 -200 200 N
+P 2 0 1 0 -30 -300 100 -300 N
+P 2 0 1 0 -30 -100 100 -100 N
+P 2 0 1 0 -30 100 100 100 N
+P 2 0 1 0 -30 300 100 300 N
+P 2 0 1 0 70 -200 100 -200 N
+P 2 0 1 0 70 0 100 0 N
+P 2 0 1 0 70 200 100 200 N
+P 4 0 1 0 -150 -250 -150 -350 -50 -300 -150 -250 N
+P 4 0 1 0 -150 -50 -150 -150 -50 -100 -150 -50 N
+P 4 0 1 0 -150 150 -150 50 -50 100 -150 150 N
+P 4 0 1 0 -150 350 -150 250 -50 300 -150 350 N
+P 4 0 1 0 -50 -150 -50 -250 50 -200 -50 -150 N
+P 4 0 1 0 -50 50 -50 -50 50 0 -50 50 N
+P 4 0 1 0 -50 250 -50 150 50 200 -50 250 N
+X IN_1 1 -400 300 200 R 50 50 1 1 I
+X OUT_7 10 300 -300 200 L 50 50 1 1 O
+X OUT_6 11 300 -200 200 L 50 50 1 1 O
+X OUT_5 12 300 -100 200 L 50 50 1 1 O
+X OUT_4 13 300 0 200 L 50 50 1 1 O
+X OUT_3 14 300 100 200 L 50 50 1 1 O
+X OUT_2 15 300 200 200 L 50 50 1 1 O
+X OUT_1 16 300 300 200 L 50 50 1 1 O
+X IN_2 2 -400 200 200 R 50 50 1 1 I
+X IN_3 3 -400 100 200 R 50 50 1 1 I
+X IN_4 4 -400 0 200 R 50 50 1 1 I
+X IN_5 5 -400 -100 200 R 50 50 1 1 I
+X IN_6 6 -400 -200 200 R 50 50 1 1 I
+X IN_7 7 -400 -300 200 R 50 50 1 1 I
+X GND 8 0 -600 200 U 50 50 1 1 W
+X COM 9 300 400 200 L 50 50 1 1 O
+ENDDRAW
+ENDDEF
+#
+# power_+12V
+#
+DEF power_+12V #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -150 50 H I C CNN
+F1 "power_+12V" 0 140 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 0 1 0 -30 50 0 100 N
+P 2 0 1 0 0 0 0 100 N
+P 2 0 1 0 0 100 30 50 N
+X +12V 1 0 0 0 U 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+# power_GND
+#
+DEF power_GND #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -250 50 H I C CNN
+F1 "power_GND" 0 -150 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 6 0 1 0 0 0 0 -50 50 -50 0 -100 -50 -50 0 -50 N
+X GND 1 0 0 0 D 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+#End Library

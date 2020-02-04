@@ -24,7 +24,7 @@ extern int  *__brkval;
 
 const int channel_size = 8;
 const int channels[channel_size] = {
-	4, 5, 6, 7, 8, 9, A6, A7
+	4, 5, 6, 7, 8, 9, A6, A7  // 6 digital, 2 analog
 };
 
 const char json_bracket_open[] = "{";

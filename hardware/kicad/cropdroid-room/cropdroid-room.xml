@@ -1,0 +1,1049 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>/home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/cropdroid-room/cropdroid-room.sch</source>
+    <date>Tue 04 Feb 2020 03:29:30 PM EST</date>
+    <tool>Eeschema 5.1.5-52549c5~84~ubuntu18.04.1</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>CropDroid Room</title>
+        <company>Automate The Things, LLC</company>
+        <rev>v0.1a</rev>
+        <date>2020-02-03</date>
+        <source>cropdroid-room.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value="License: Proprietary"/>
+        <comment number="4" value="Author: Jeremy Hahn"/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="J7">
+      <value>640456-3</value>
+      <footprint>digikey-footprints:PinHeader_1x3_P2.54_Drill1.1mm</footprint>
+      <datasheet>https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&amp;DocNm=640456&amp;DocType=Customer+Drawing&amp;DocLang=English</datasheet>
+      <fields>
+        <field name="Category">Connectors, Interconnects</field>
+        <field name="DK_Datasheet_Link">https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&amp;DocNm=640456&amp;DocType=Customer+Drawing&amp;DocLang=English</field>
+        <field name="DK_Detail_Page">/product-detail/en/te-connectivity-amp-connectors/640456-3/A19470-ND/259010</field>
+        <field name="Description">CONN HEADER VERT 3POS 2.54MM</field>
+        <field name="Digi-Key_PN">A19470-ND</field>
+        <field name="Family">Rectangular Connectors - Headers, Male Pins</field>
+        <field name="MPN">640456-3</field>
+        <field name="Manufacturer">TE Connectivity AMP Connectors</field>
+        <field name="Status">Active</field>
+      </fields>
+      <libsource lib="dk_Rectangular-Connectors-Headers-Male-Pins" part="640456-3" description="CONN HEADER VERT 3POS 2.54MM"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E391580</tstamp>
+    </comp>
+    <comp ref="J8">
+      <value>640456-3</value>
+      <footprint>digikey-footprints:PinHeader_1x3_P2.54_Drill1.1mm</footprint>
+      <datasheet>https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&amp;DocNm=640456&amp;DocType=Customer+Drawing&amp;DocLang=English</datasheet>
+      <fields>
+        <field name="Category">Connectors, Interconnects</field>
+        <field name="DK_Datasheet_Link">https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&amp;DocNm=640456&amp;DocType=Customer+Drawing&amp;DocLang=English</field>
+        <field name="DK_Detail_Page">/product-detail/en/te-connectivity-amp-connectors/640456-3/A19470-ND/259010</field>
+        <field name="Description">CONN HEADER VERT 3POS 2.54MM</field>
+        <field name="Digi-Key_PN">A19470-ND</field>
+        <field name="Family">Rectangular Connectors - Headers, Male Pins</field>
+        <field name="MPN">640456-3</field>
+        <field name="Manufacturer">TE Connectivity AMP Connectors</field>
+        <field name="Status">Active</field>
+      </fields>
+      <libsource lib="dk_Rectangular-Connectors-Headers-Male-Pins" part="640456-3" description="CONN HEADER VERT 3POS 2.54MM"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E392D7F</tstamp>
+    </comp>
+    <comp ref="J9">
+      <value>640456-3</value>
+      <footprint>digikey-footprints:PinHeader_1x3_P2.54_Drill1.1mm</footprint>
+      <datasheet>https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&amp;DocNm=640456&amp;DocType=Customer+Drawing&amp;DocLang=English</datasheet>
+      <fields>
+        <field name="Category">Connectors, Interconnects</field>
+        <field name="DK_Datasheet_Link">https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&amp;DocNm=640456&amp;DocType=Customer+Drawing&amp;DocLang=English</field>
+        <field name="DK_Detail_Page">/product-detail/en/te-connectivity-amp-connectors/640456-3/A19470-ND/259010</field>
+        <field name="Description">CONN HEADER VERT 3POS 2.54MM</field>
+        <field name="Digi-Key_PN">A19470-ND</field>
+        <field name="Family">Rectangular Connectors - Headers, Male Pins</field>
+        <field name="MPN">640456-3</field>
+        <field name="Manufacturer">TE Connectivity AMP Connectors</field>
+        <field name="Status">Active</field>
+      </fields>
+      <libsource lib="dk_Rectangular-Connectors-Headers-Male-Pins" part="640456-3" description="CONN HEADER VERT 3POS 2.54MM"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E393646</tstamp>
+    </comp>
+    <comp ref="R8">
+      <value>4.7k</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E396927</tstamp>
+    </comp>
+    <comp ref="U1">
+      <value>PPTC151LFBN-RC</value>
+      <footprint>PPTC151LFBN-RC:PPTC151LFBN-RC</footprint>
+      <libsource lib="PPTC151LFBN-RC" part="PPTC151LFBN-RC" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E3998B1</tstamp>
+    </comp>
+    <comp ref="U2">
+      <value>PPTC151LFBN-RC</value>
+      <footprint>PPTC151LFBN-RC:PPTC151LFBN-RC</footprint>
+      <libsource lib="PPTC151LFBN-RC" part="PPTC151LFBN-RC" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E39B9DF</tstamp>
+    </comp>
+    <comp ref="R9">
+      <value>4.7k</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E3CE501</tstamp>
+    </comp>
+    <comp ref="R10">
+      <value>4.7k</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E3CEF3A</tstamp>
+    </comp>
+    <comp ref="CON3">
+      <value>SJ1-3523N</value>
+      <footprint>digikey-footprints:Headphone_Jack_3.5mm_SJ1-3523N</footprint>
+      <datasheet>https://www.cui.com/product/resource/digikeypdf/sj1-352xn_series.pdf</datasheet>
+      <fields>
+        <field name="Category">Connectors, Interconnects</field>
+        <field name="DK_Datasheet_Link">https://www.cui.com/product/resource/digikeypdf/sj1-352xn_series.pdf</field>
+        <field name="DK_Detail_Page">/product-detail/en/cui-inc/SJ1-3523N/CP1-3523N-ND/738689</field>
+        <field name="Description">CONN JACK STEREO 3.5MM R/A</field>
+        <field name="Digi-Key_PN">CP1-3523N-ND</field>
+        <field name="Family">Barrel - Audio Connectors</field>
+        <field name="MPN">SJ1-3523N</field>
+        <field name="Manufacturer">CUI Inc.</field>
+        <field name="Status">Active</field>
+      </fields>
+      <libsource lib="dk_Barrel-Audio-Connectors" part="SJ1-3523N" description="CONN JACK STEREO 3.5MM R/A"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E395223</tstamp>
+    </comp>
+    <comp ref="CON4">
+      <value>SJ1-3523N</value>
+      <footprint>digikey-footprints:Headphone_Jack_3.5mm_SJ1-3523N</footprint>
+      <datasheet>https://www.cui.com/product/resource/digikeypdf/sj1-352xn_series.pdf</datasheet>
+      <fields>
+        <field name="Category">Connectors, Interconnects</field>
+        <field name="DK_Datasheet_Link">https://www.cui.com/product/resource/digikeypdf/sj1-352xn_series.pdf</field>
+        <field name="DK_Detail_Page">/product-detail/en/cui-inc/SJ1-3523N/CP1-3523N-ND/738689</field>
+        <field name="Description">CONN JACK STEREO 3.5MM R/A</field>
+        <field name="Digi-Key_PN">CP1-3523N-ND</field>
+        <field name="Family">Barrel - Audio Connectors</field>
+        <field name="MPN">SJ1-3523N</field>
+        <field name="Manufacturer">CUI Inc.</field>
+        <field name="Status">Active</field>
+      </fields>
+      <libsource lib="dk_Barrel-Audio-Connectors" part="SJ1-3523N" description="CONN JACK STEREO 3.5MM R/A"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E3F89E9</tstamp>
+    </comp>
+    <comp ref="D11">
+      <value>D_Photo</value>
+      <footprint>libraries:PHODET_PDV-P8103</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="D_Photo" description="Photodiode"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E42A07B</tstamp>
+    </comp>
+    <comp ref="R7">
+      <value>10k</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E4361EE</tstamp>
+    </comp>
+    <comp ref="Q1">
+      <value>ULN2003AN</value>
+      <footprint>digikey-footprints:DIP-16_W7.62mm</footprint>
+      <datasheet>http://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&amp;gotoUrl=http%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Fuln2003a</datasheet>
+      <fields>
+        <field name="Category">Discrete Semiconductor Products</field>
+        <field name="DK_Datasheet_Link">http://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&amp;gotoUrl=http%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Fuln2003a</field>
+        <field name="DK_Detail_Page">/product-detail/en/texas-instruments/ULN2003AN/296-1979-5-ND/277624</field>
+        <field name="Description">IC PWR RELAY 7NPN 1:1 16DIP</field>
+        <field name="Digi-Key_PN">296-1979-5-ND</field>
+        <field name="Family">Transistors - Bipolar (BJT) - Arrays</field>
+        <field name="MPN">ULN2003AN</field>
+        <field name="Manufacturer">Texas Instruments</field>
+        <field name="Status">Active</field>
+      </fields>
+      <libsource lib="dk_Transistors-Bipolar-BJT-Arrays" part="ULN2003AN" description="IC PWR RELAY 7NPN 1:1 16DIP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E47773D</tstamp>
+    </comp>
+    <comp ref="K2">
+      <value>T9AS1D12-15</value>
+      <footprint>T9AS1D12-15:RELAY_T9AS1D12-15</footprint>
+      <datasheet>https://www.te.com/usa-en/product-1-1393210-4.html?te_bu=Cor&amp;te_type=disp&amp;te_campaign=seda_glo_cor-seda-global-disp-prtnr-fy19-seda-model-bom-cta_sma-317_1&amp;elqCampaignId=32493</datasheet>
+      <fields>
+        <field name="Field4">1-1393210-4</field>
+      </fields>
+      <libsource lib="T9AS1D12-15" part="T9AS1D12-15" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E449E78</tstamp>
+    </comp>
+    <comp ref="D3">
+      <value>1N4001</value>
+      <footprint>Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal</footprint>
+      <datasheet>http://www.vishay.com/docs/88503/1n4001.pdf</datasheet>
+      <libsource lib="Diode" part="1N4001" description="50V 1A General Purpose Rectifier Diode, DO-41"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E4533FF</tstamp>
+    </comp>
+    <comp ref="K3">
+      <value>T9AS1D12-15</value>
+      <footprint>T9AS1D12-15:RELAY_T9AS1D12-15</footprint>
+      <datasheet>https://www.te.com/usa-en/product-1-1393210-4.html?te_bu=Cor&amp;te_type=disp&amp;te_campaign=seda_glo_cor-seda-global-disp-prtnr-fy19-seda-model-bom-cta_sma-317_1&amp;elqCampaignId=32493</datasheet>
+      <fields>
+        <field name="Field4">1-1393210-4</field>
+      </fields>
+      <libsource lib="T9AS1D12-15" part="T9AS1D12-15" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E5FCA8E</tstamp>
+    </comp>
+    <comp ref="D5">
+      <value>1N4001</value>
+      <footprint>Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal</footprint>
+      <datasheet>http://www.vishay.com/docs/88503/1n4001.pdf</datasheet>
+      <libsource lib="Diode" part="1N4001" description="50V 1A General Purpose Rectifier Diode, DO-41"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E5FCA97</tstamp>
+    </comp>
+    <comp ref="K4">
+      <value>T9AS1D12-15</value>
+      <footprint>T9AS1D12-15:RELAY_T9AS1D12-15</footprint>
+      <datasheet>https://www.te.com/usa-en/product-1-1393210-4.html?te_bu=Cor&amp;te_type=disp&amp;te_campaign=seda_glo_cor-seda-global-disp-prtnr-fy19-seda-model-bom-cta_sma-317_1&amp;elqCampaignId=32493</datasheet>
+      <fields>
+        <field name="Field4">1-1393210-4</field>
+      </fields>
+      <libsource lib="T9AS1D12-15" part="T9AS1D12-15" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E600D03</tstamp>
+    </comp>
+    <comp ref="D7">
+      <value>1N4001</value>
+      <footprint>Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal</footprint>
+      <datasheet>http://www.vishay.com/docs/88503/1n4001.pdf</datasheet>
+      <libsource lib="Diode" part="1N4001" description="50V 1A General Purpose Rectifier Diode, DO-41"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E600D0C</tstamp>
+    </comp>
+    <comp ref="K5">
+      <value>T9AS1D12-15</value>
+      <footprint>T9AS1D12-15:RELAY_T9AS1D12-15</footprint>
+      <datasheet>https://www.te.com/usa-en/product-1-1393210-4.html?te_bu=Cor&amp;te_type=disp&amp;te_campaign=seda_glo_cor-seda-global-disp-prtnr-fy19-seda-model-bom-cta_sma-317_1&amp;elqCampaignId=32493</datasheet>
+      <fields>
+        <field name="Field4">1-1393210-4</field>
+      </fields>
+      <libsource lib="T9AS1D12-15" part="T9AS1D12-15" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E6052F4</tstamp>
+    </comp>
+    <comp ref="D9">
+      <value>1N4001</value>
+      <footprint>Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal</footprint>
+      <datasheet>http://www.vishay.com/docs/88503/1n4001.pdf</datasheet>
+      <libsource lib="Diode" part="1N4001" description="50V 1A General Purpose Rectifier Diode, DO-41"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E6052FD</tstamp>
+    </comp>
+    <comp ref="D4">
+      <value>LED</value>
+      <footprint>libraries:CAPPRD350W60D800H2000</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E6256C5</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>1 Ohm</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E635B80</tstamp>
+    </comp>
+    <comp ref="D6">
+      <value>LED</value>
+      <footprint>libraries:CAPPRD350W60D800H2000</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E707149</tstamp>
+    </comp>
+    <comp ref="D8">
+      <value>LED</value>
+      <footprint>libraries:CAPPRD350W60D800H2000</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E707DAF</tstamp>
+    </comp>
+    <comp ref="D10">
+      <value>LED</value>
+      <footprint>libraries:CAPPRD350W60D800H2000</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E70877E</tstamp>
+    </comp>
+    <comp ref="R3">
+      <value>1 Ohm</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E708F13</tstamp>
+    </comp>
+    <comp ref="R4">
+      <value>1 Ohm</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E7095C2</tstamp>
+    </comp>
+    <comp ref="R5">
+      <value>1 Ohm</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E709B9C</tstamp>
+    </comp>
+    <comp ref="J3">
+      <value>OSTTC020162</value>
+      <footprint>digikey-footprints:Term_Block_1x2_P5mm</footprint>
+      <datasheet>http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf</datasheet>
+      <fields>
+        <field name="Category">Connectors, Interconnects</field>
+        <field name="DK_Datasheet_Link">http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf</field>
+        <field name="DK_Detail_Page">/product-detail/en/on-shore-technology-inc/OSTTC020162/ED2600-ND/614549</field>
+        <field name="Description">TERM BLK 2POS SIDE ENTRY 5MM PCB</field>
+        <field name="Digi-Key_PN">ED2600-ND</field>
+        <field name="Family">Terminal Blocks - Wire to Board</field>
+        <field name="MPN">OSTTC020162</field>
+        <field name="Manufacturer">On Shore Technology Inc.</field>
+        <field name="Status">Active</field>
+      </fields>
+      <libsource lib="dk_Terminal-Blocks-Wire-to-Board" part="OSTTC020162" description="TERM BLK 2POS SIDE ENTRY 5MM PCB"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E76C2F4</tstamp>
+    </comp>
+    <comp ref="J4">
+      <value>OSTTC020162</value>
+      <footprint>digikey-footprints:Term_Block_1x2_P5mm</footprint>
+      <datasheet>http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf</datasheet>
+      <fields>
+        <field name="Category">Connectors, Interconnects</field>
+        <field name="DK_Datasheet_Link">http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf</field>
+        <field name="DK_Detail_Page">/product-detail/en/on-shore-technology-inc/OSTTC020162/ED2600-ND/614549</field>
+        <field name="Description">TERM BLK 2POS SIDE ENTRY 5MM PCB</field>
+        <field name="Digi-Key_PN">ED2600-ND</field>
+        <field name="Family">Terminal Blocks - Wire to Board</field>
+        <field name="MPN">OSTTC020162</field>
+        <field name="Manufacturer">On Shore Technology Inc.</field>
+        <field name="Status">Active</field>
+      </fields>
+      <libsource lib="dk_Terminal-Blocks-Wire-to-Board" part="OSTTC020162" description="TERM BLK 2POS SIDE ENTRY 5MM PCB"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E7A1D46</tstamp>
+    </comp>
+    <comp ref="J5">
+      <value>OSTTC020162</value>
+      <footprint>digikey-footprints:Term_Block_1x2_P5mm</footprint>
+      <datasheet>http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf</datasheet>
+      <fields>
+        <field name="Category">Connectors, Interconnects</field>
+        <field name="DK_Datasheet_Link">http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf</field>
+        <field name="DK_Detail_Page">/product-detail/en/on-shore-technology-inc/OSTTC020162/ED2600-ND/614549</field>
+        <field name="Description">TERM BLK 2POS SIDE ENTRY 5MM PCB</field>
+        <field name="Digi-Key_PN">ED2600-ND</field>
+        <field name="Family">Terminal Blocks - Wire to Board</field>
+        <field name="MPN">OSTTC020162</field>
+        <field name="Manufacturer">On Shore Technology Inc.</field>
+        <field name="Status">Active</field>
+      </fields>
+      <libsource lib="dk_Terminal-Blocks-Wire-to-Board" part="OSTTC020162" description="TERM BLK 2POS SIDE ENTRY 5MM PCB"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E7A3A25</tstamp>
+    </comp>
+    <comp ref="J6">
+      <value>OSTTC020162</value>
+      <footprint>digikey-footprints:Term_Block_1x2_P5mm</footprint>
+      <datasheet>http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf</datasheet>
+      <fields>
+        <field name="Category">Connectors, Interconnects</field>
+        <field name="DK_Datasheet_Link">http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf</field>
+        <field name="DK_Detail_Page">/product-detail/en/on-shore-technology-inc/OSTTC020162/ED2600-ND/614549</field>
+        <field name="Description">TERM BLK 2POS SIDE ENTRY 5MM PCB</field>
+        <field name="Digi-Key_PN">ED2600-ND</field>
+        <field name="Family">Terminal Blocks - Wire to Board</field>
+        <field name="MPN">OSTTC020162</field>
+        <field name="Manufacturer">On Shore Technology Inc.</field>
+        <field name="Status">Active</field>
+      </fields>
+      <libsource lib="dk_Terminal-Blocks-Wire-to-Board" part="OSTTC020162" description="TERM BLK 2POS SIDE ENTRY 5MM PCB"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E7A6AC7</tstamp>
+    </comp>
+    <comp ref="J2">
+      <value>PJ-102A</value>
+      <footprint>digikey-footprints:Barrel_Jack_5.5mmODx2.1mmID_PJ-102A</footprint>
+      <datasheet>https://www.cui.com/product/resource/digikeypdf/pj-102a.pdf</datasheet>
+      <fields>
+        <field name="Category">Connectors, Interconnects</field>
+        <field name="DK_Datasheet_Link">https://www.cui.com/product/resource/digikeypdf/pj-102a.pdf</field>
+        <field name="DK_Detail_Page">/product-detail/en/cui-inc/PJ-102A/CP-102A-ND/275425</field>
+        <field name="Description">CONN PWR JACK 2X5.5MM SOLDER</field>
+        <field name="Digi-Key_PN">CP-102A-ND</field>
+        <field name="Family">Barrel - Power Connectors</field>
+        <field name="MPN">PJ-102A</field>
+        <field name="Manufacturer">CUI Inc.</field>
+        <field name="Status">Active</field>
+      </fields>
+      <libsource lib="dk_Barrel-Power-Connectors" part="PJ-102A" description="CONN PWR JACK 2X5.5MM SOLDER"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E88B981</tstamp>
+    </comp>
+    <comp ref="CON1">
+      <value>SJ1-3523N</value>
+      <footprint>digikey-footprints:Headphone_Jack_3.5mm_SJ1-3523N</footprint>
+      <datasheet>https://www.cui.com/product/resource/digikeypdf/sj1-352xn_series.pdf</datasheet>
+      <fields>
+        <field name="Category">Connectors, Interconnects</field>
+        <field name="DK_Datasheet_Link">https://www.cui.com/product/resource/digikeypdf/sj1-352xn_series.pdf</field>
+        <field name="DK_Detail_Page">/product-detail/en/cui-inc/SJ1-3523N/CP1-3523N-ND/738689</field>
+        <field name="Description">CONN JACK STEREO 3.5MM R/A</field>
+        <field name="Digi-Key_PN">CP1-3523N-ND</field>
+        <field name="Family">Barrel - Audio Connectors</field>
+        <field name="MPN">SJ1-3523N</field>
+        <field name="Manufacturer">CUI Inc.</field>
+        <field name="Status">Active</field>
+      </fields>
+      <libsource lib="dk_Barrel-Audio-Connectors" part="SJ1-3523N" description="CONN JACK STEREO 3.5MM R/A"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E95395F</tstamp>
+    </comp>
+    <comp ref="CON2">
+      <value>SJ1-3523N</value>
+      <footprint>digikey-footprints:Headphone_Jack_3.5mm_SJ1-3523N</footprint>
+      <datasheet>https://www.cui.com/product/resource/digikeypdf/sj1-352xn_series.pdf</datasheet>
+      <fields>
+        <field name="Category">Connectors, Interconnects</field>
+        <field name="DK_Datasheet_Link">https://www.cui.com/product/resource/digikeypdf/sj1-352xn_series.pdf</field>
+        <field name="DK_Detail_Page">/product-detail/en/cui-inc/SJ1-3523N/CP1-3523N-ND/738689</field>
+        <field name="Description">CONN JACK STEREO 3.5MM R/A</field>
+        <field name="Digi-Key_PN">CP1-3523N-ND</field>
+        <field name="Family">Barrel - Audio Connectors</field>
+        <field name="MPN">SJ1-3523N</field>
+        <field name="Manufacturer">CUI Inc.</field>
+        <field name="Status">Active</field>
+      </fields>
+      <libsource lib="dk_Barrel-Audio-Connectors" part="SJ1-3523N" description="CONN JACK STEREO 3.5MM R/A"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E9C4B64</tstamp>
+    </comp>
+    <comp ref="R6">
+      <value>4.7k</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5EB43D25</tstamp>
+    </comp>
+    <comp ref="K1">
+      <value>T9AS1D12-15</value>
+      <footprint>T9AS1D12-15:RELAY_T9AS1D12-15</footprint>
+      <datasheet>https://www.te.com/usa-en/product-1-1393210-4.html?te_bu=Cor&amp;te_type=disp&amp;te_campaign=seda_glo_cor-seda-global-disp-prtnr-fy19-seda-model-bom-cta_sma-317_1&amp;elqCampaignId=32493</datasheet>
+      <fields>
+        <field name="Field4">1-1393210-4</field>
+      </fields>
+      <libsource lib="T9AS1D12-15" part="T9AS1D12-15" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E42F506</tstamp>
+    </comp>
+    <comp ref="D1">
+      <value>1N4001</value>
+      <footprint>Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal</footprint>
+      <datasheet>http://www.vishay.com/docs/88503/1n4001.pdf</datasheet>
+      <libsource lib="Diode" part="1N4001" description="50V 1A General Purpose Rectifier Diode, DO-41"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E430054</tstamp>
+    </comp>
+    <comp ref="D2">
+      <value>LED</value>
+      <footprint>libraries:CAPPRD350W60D800H2000</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E430B6A</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>1 Ohm</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E4316A2</tstamp>
+    </comp>
+    <comp ref="J1">
+      <value>OSTTC020162</value>
+      <footprint>digikey-footprints:Term_Block_1x2_P5mm</footprint>
+      <datasheet>http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf</datasheet>
+      <fields>
+        <field name="Category">Connectors, Interconnects</field>
+        <field name="DK_Datasheet_Link">http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf</field>
+        <field name="DK_Detail_Page">/product-detail/en/on-shore-technology-inc/OSTTC020162/ED2600-ND/614549</field>
+        <field name="Description">TERM BLK 2POS SIDE ENTRY 5MM PCB</field>
+        <field name="Digi-Key_PN">ED2600-ND</field>
+        <field name="Family">Terminal Blocks - Wire to Board</field>
+        <field name="MPN">OSTTC020162</field>
+        <field name="Manufacturer">On Shore Technology Inc.</field>
+        <field name="Status">Active</field>
+      </fields>
+      <libsource lib="dk_Terminal-Blocks-Wire-to-Board" part="OSTTC020162" description="TERM BLK 2POS SIDE ENTRY 5MM PCB"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E431C9F</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Device" part="D_Photo">
+      <description>Photodiode</description>
+      <docs>~</docs>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">D_Photo</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="LED">
+      <description>Light emitting diode</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>LED*</fp>
+        <fp>LED_SMD:*</fp>
+        <fp>LED_THT:*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">LED</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R">
+      <description>Resistor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Diode" part="1N4001">
+      <aliases>
+        <alias>1N4002</alias>
+        <alias>1N4003</alias>
+        <alias>1N4004</alias>
+        <alias>1N4005</alias>
+        <alias>1N4006</alias>
+        <alias>1N4007</alias>
+        <alias>BA157</alias>
+        <alias>BA158</alias>
+        <alias>BA159</alias>
+      </aliases>
+      <description>50V 1A General Purpose Rectifier Diode, DO-41</description>
+      <docs>http://www.vishay.com/docs/88503/1n4001.pdf</docs>
+      <footprints>
+        <fp>D*DO?41*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">1N4001</field>
+        <field name="Footprint">Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="PPTC151LFBN-RC" part="PPTC151LFBN-RC">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">PPTC151LFBN-RC</field>
+        <field name="Footprint">PPTC151LFBN-RC</field>
+      </fields>
+      <pins>
+        <pin num="P$1" name="P$1" type="BiDi"/>
+        <pin num="P$2" name="P$2" type="BiDi"/>
+        <pin num="P$3" name="P$3" type="BiDi"/>
+        <pin num="P$4" name="P$4" type="BiDi"/>
+        <pin num="P$5" name="P$5" type="BiDi"/>
+        <pin num="P$6" name="P$6" type="BiDi"/>
+        <pin num="P$7" name="P$7" type="BiDi"/>
+        <pin num="P$8" name="P$8" type="BiDi"/>
+        <pin num="P$9" name="P$9" type="BiDi"/>
+        <pin num="P$10" name="P$10" type="BiDi"/>
+        <pin num="P$11" name="P$11" type="BiDi"/>
+        <pin num="P$12" name="P$12" type="BiDi"/>
+        <pin num="P$13" name="P$13" type="BiDi"/>
+        <pin num="P$14" name="P$14" type="BiDi"/>
+        <pin num="P$15" name="P$15" type="BiDi"/>
+      </pins>
+    </libpart>
+    <libpart lib="T9AS1D12-15" part="T9AS1D12-15">
+      <fields>
+        <field name="Reference">K</field>
+        <field name="Value">T9AS1D12-15</field>
+        <field name="Footprint">RELAY_T9AS1D12-15</field>
+        <field name="Datasheet">https://www.te.com/usa-en/product-1-1393210-4.html?te_bu=Cor&amp;te_type=disp&amp;te_campaign=seda_glo_cor-seda-global-disp-prtnr-fy19-seda-model-bom-cta_sma-317_1&amp;elqCampaignId=32493</field>
+        <field name="Field4">1-1393210-4</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A1" type="passive"/>
+        <pin num="2" name="A2" type="passive"/>
+        <pin num="3" name="C" type="passive"/>
+        <pin num="4" name="NO" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="dk_Barrel-Audio-Connectors" part="SJ1-3523N">
+      <description>CONN JACK STEREO 3.5MM R/A</description>
+      <docs>https://www.cui.com/product/resource/digikeypdf/sj1-352xn_series.pdf</docs>
+      <fields>
+        <field name="Reference">CON</field>
+        <field name="Value">SJ1-3523N</field>
+        <field name="Footprint">digikey-footprints:Headphone_Jack_3.5mm_SJ1-3523N</field>
+        <field name="Datasheet">https://www.cui.com/product/resource/digikeypdf/sj1-352xn_series.pdf</field>
+        <field name="Digi-Key_PN">CP1-3523N-ND</field>
+        <field name="MPN">SJ1-3523N</field>
+        <field name="Category">Connectors, Interconnects</field>
+        <field name="Family">Barrel - Audio Connectors</field>
+        <field name="DK_Datasheet_Link">https://www.cui.com/product/resource/digikeypdf/sj1-352xn_series.pdf</field>
+        <field name="DK_Detail_Page">/product-detail/en/cui-inc/SJ1-3523N/CP1-3523N-ND/738689</field>
+        <field name="Description">CONN JACK STEREO 3.5MM R/A</field>
+        <field name="Manufacturer">CUI Inc.</field>
+        <field name="Status">Active</field>
+      </fields>
+      <pins>
+        <pin num="1" name="S" type="passive"/>
+        <pin num="2" name="T" type="passive"/>
+        <pin num="3" name="R" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="dk_Barrel-Power-Connectors" part="PJ-102A">
+      <description>CONN PWR JACK 2X5.5MM SOLDER</description>
+      <docs>https://www.cui.com/product/resource/digikeypdf/pj-102a.pdf</docs>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">PJ-102A</field>
+        <field name="Footprint">digikey-footprints:Barrel_Jack_5.5mmODx2.1mmID_PJ-102A</field>
+        <field name="Datasheet">https://www.cui.com/product/resource/digikeypdf/pj-102a.pdf</field>
+        <field name="Digi-Key_PN">CP-102A-ND</field>
+        <field name="MPN">PJ-102A</field>
+        <field name="Category">Connectors, Interconnects</field>
+        <field name="Family">Barrel - Power Connectors</field>
+        <field name="DK_Datasheet_Link">https://www.cui.com/product/resource/digikeypdf/pj-102a.pdf</field>
+        <field name="DK_Detail_Page">/product-detail/en/cui-inc/PJ-102A/CP-102A-ND/275425</field>
+        <field name="Description">CONN PWR JACK 2X5.5MM SOLDER</field>
+        <field name="Manufacturer">CUI Inc.</field>
+        <field name="Status">Active</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+        <pin num="3" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="dk_Rectangular-Connectors-Headers-Male-Pins" part="640456-3">
+      <description>CONN HEADER VERT 3POS 2.54MM</description>
+      <docs>https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&amp;DocNm=640456&amp;DocType=Customer+Drawing&amp;DocLang=English</docs>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">640456-3</field>
+        <field name="Footprint">digikey-footprints:PinHeader_1x3_P2.54_Drill1.1mm</field>
+        <field name="Datasheet">https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&amp;DocNm=640456&amp;DocType=Customer+Drawing&amp;DocLang=English</field>
+        <field name="Digi-Key_PN">A19470-ND</field>
+        <field name="MPN">640456-3</field>
+        <field name="Category">Connectors, Interconnects</field>
+        <field name="Family">Rectangular Connectors - Headers, Male Pins</field>
+        <field name="DK_Datasheet_Link">https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&amp;DocNm=640456&amp;DocType=Customer+Drawing&amp;DocLang=English</field>
+        <field name="DK_Detail_Page">/product-detail/en/te-connectivity-amp-connectors/640456-3/A19470-ND/259010</field>
+        <field name="Description">CONN HEADER VERT 3POS 2.54MM</field>
+        <field name="Manufacturer">TE Connectivity AMP Connectors</field>
+        <field name="Status">Active</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+        <pin num="3" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="dk_Terminal-Blocks-Wire-to-Board" part="OSTTC020162">
+      <description>TERM BLK 2POS SIDE ENTRY 5MM PCB</description>
+      <docs>http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf</docs>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">OSTTC020162</field>
+        <field name="Footprint">digikey-footprints:Term_Block_1x2_P5mm</field>
+        <field name="Datasheet">http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf</field>
+        <field name="Digi-Key_PN">ED2600-ND</field>
+        <field name="MPN">OSTTC020162</field>
+        <field name="Category">Connectors, Interconnects</field>
+        <field name="Family">Terminal Blocks - Wire to Board</field>
+        <field name="DK_Datasheet_Link">http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf</field>
+        <field name="DK_Detail_Page">/product-detail/en/on-shore-technology-inc/OSTTC020162/ED2600-ND/614549</field>
+        <field name="Description">TERM BLK 2POS SIDE ENTRY 5MM PCB</field>
+        <field name="Manufacturer">On Shore Technology Inc.</field>
+        <field name="Status">Active</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="dk_Transistors-Bipolar-BJT-Arrays" part="ULN2003AN">
+      <description>IC PWR RELAY 7NPN 1:1 16DIP</description>
+      <docs>http://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&amp;gotoUrl=http%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Fuln2003a</docs>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">ULN2003AN</field>
+        <field name="Footprint">digikey-footprints:DIP-16_W7.62mm</field>
+        <field name="Datasheet">http://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&amp;gotoUrl=http%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Fuln2003a</field>
+        <field name="Digi-Key_PN">296-1979-5-ND</field>
+        <field name="MPN">ULN2003AN</field>
+        <field name="Category">Discrete Semiconductor Products</field>
+        <field name="Family">Transistors - Bipolar (BJT) - Arrays</field>
+        <field name="DK_Datasheet_Link">http://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&amp;gotoUrl=http%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Fuln2003a</field>
+        <field name="DK_Detail_Page">/product-detail/en/texas-instruments/ULN2003AN/296-1979-5-ND/277624</field>
+        <field name="Description">IC PWR RELAY 7NPN 1:1 16DIP</field>
+        <field name="Manufacturer">Texas Instruments</field>
+        <field name="Status">Active</field>
+      </fields>
+      <pins>
+        <pin num="1" name="IN_1" type="input"/>
+        <pin num="2" name="IN_2" type="input"/>
+        <pin num="3" name="IN_3" type="input"/>
+        <pin num="4" name="IN_4" type="input"/>
+        <pin num="5" name="IN_5" type="input"/>
+        <pin num="6" name="IN_6" type="input"/>
+        <pin num="7" name="IN_7" type="input"/>
+        <pin num="8" name="GND" type="power_in"/>
+        <pin num="9" name="COM" type="output"/>
+        <pin num="10" name="OUT_7" type="output"/>
+        <pin num="11" name="OUT_6" type="output"/>
+        <pin num="12" name="OUT_5" type="output"/>
+        <pin num="13" name="OUT_4" type="output"/>
+        <pin num="14" name="OUT_3" type="output"/>
+        <pin num="15" name="OUT_2" type="output"/>
+        <pin num="16" name="OUT_1" type="output"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Device">
+      <uri>/home/jhahn/sources/kicad-symbols/Device.lib</uri>
+    </library>
+    <library logical="Diode">
+      <uri>/home/jhahn/sources/kicad-symbols/Diode.lib</uri>
+    </library>
+    <library logical="PPTC151LFBN-RC">
+      <uri>/home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries/PPTC151LFBN-RC/PPTC151LFBN-RC.lib</uri>
+    </library>
+    <library logical="T9AS1D12-15">
+      <uri>/home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries/T9AS1D12-15/T9AS1D12-15.lib</uri>
+    </library>
+    <library logical="dk_Barrel-Audio-Connectors">
+      <uri>/home/jhahn/sources/digikey-kicad-library/digikey-symbols/dk_Barrel-Audio-Connectors.lib</uri>
+    </library>
+    <library logical="dk_Barrel-Power-Connectors">
+      <uri>/home/jhahn/sources/digikey-kicad-library/digikey-symbols/dk_Barrel-Power-Connectors.lib</uri>
+    </library>
+    <library logical="dk_Rectangular-Connectors-Headers-Male-Pins">
+      <uri>/home/jhahn/sources/digikey-kicad-library/digikey-symbols/dk_Rectangular-Connectors-Headers-Male-Pins.lib</uri>
+    </library>
+    <library logical="dk_Terminal-Blocks-Wire-to-Board">
+      <uri>/home/jhahn/sources/digikey-kicad-library/digikey-symbols/dk_Terminal-Blocks-Wire-to-Board.lib</uri>
+    </library>
+    <library logical="dk_Transistors-Bipolar-BJT-Arrays">
+      <uri>/home/jhahn/sources/digikey-kicad-library/digikey-symbols/dk_Transistors-Bipolar-BJT-Arrays.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="Net-(J2-Pad3)">
+      <node ref="J2" pin="3"/>
+    </net>
+    <net code="2" name="GND">
+      <node ref="R1" pin="2"/>
+      <node ref="R2" pin="2"/>
+      <node ref="Q1" pin="8"/>
+      <node ref="R5" pin="2"/>
+      <node ref="R4" pin="2"/>
+      <node ref="R3" pin="2"/>
+      <node ref="U2" pin="P$2"/>
+      <node ref="J7" pin="3"/>
+      <node ref="J8" pin="3"/>
+      <node ref="J9" pin="3"/>
+      <node ref="R7" pin="1"/>
+      <node ref="CON3" pin="1"/>
+      <node ref="CON4" pin="1"/>
+      <node ref="CON2" pin="1"/>
+      <node ref="CON1" pin="1"/>
+      <node ref="J2" pin="2"/>
+    </net>
+    <net code="3" name="Net-(J6-Pad1)">
+      <node ref="J6" pin="1"/>
+      <node ref="K5" pin="4"/>
+    </net>
+    <net code="4" name="Net-(CON2-Pad2)">
+      <node ref="CON2" pin="2"/>
+      <node ref="U2" pin="P$12"/>
+    </net>
+    <net code="5" name="Net-(D5-Pad2)">
+      <node ref="D5" pin="2"/>
+      <node ref="Q1" pin="14"/>
+      <node ref="K3" pin="1"/>
+    </net>
+    <net code="6" name="Net-(J6-Pad2)">
+      <node ref="K5" pin="3"/>
+      <node ref="J6" pin="2"/>
+    </net>
+    <net code="7" name="Net-(J5-Pad2)">
+      <node ref="J5" pin="2"/>
+      <node ref="K4" pin="3"/>
+    </net>
+    <net code="8" name="Net-(J5-Pad1)">
+      <node ref="J5" pin="1"/>
+      <node ref="K4" pin="4"/>
+    </net>
+    <net code="9" name="Net-(J4-Pad1)">
+      <node ref="K3" pin="4"/>
+      <node ref="J4" pin="1"/>
+    </net>
+    <net code="10" name="Net-(J3-Pad2)">
+      <node ref="K2" pin="3"/>
+      <node ref="J3" pin="2"/>
+    </net>
+    <net code="11" name="Net-(J3-Pad1)">
+      <node ref="K2" pin="4"/>
+      <node ref="J3" pin="1"/>
+    </net>
+    <net code="12" name="Net-(J4-Pad2)">
+      <node ref="J4" pin="2"/>
+      <node ref="K3" pin="3"/>
+    </net>
+    <net code="13" name="Net-(CON1-Pad2)">
+      <node ref="U1" pin="P$5"/>
+      <node ref="CON1" pin="2"/>
+      <node ref="R6" pin="2"/>
+    </net>
+    <net code="14" name="Net-(D2-Pad1)">
+      <node ref="D2" pin="1"/>
+      <node ref="R1" pin="1"/>
+    </net>
+    <net code="15" name="Net-(D1-Pad2)">
+      <node ref="D1" pin="2"/>
+      <node ref="K1" pin="1"/>
+      <node ref="Q1" pin="16"/>
+    </net>
+    <net code="16" name="Net-(J7-Pad2)">
+      <node ref="U1" pin="P$6"/>
+      <node ref="J7" pin="2"/>
+      <node ref="R8" pin="2"/>
+    </net>
+    <net code="17" name="Net-(D10-Pad1)">
+      <node ref="R5" pin="1"/>
+      <node ref="D10" pin="1"/>
+    </net>
+    <net code="18" name="Net-(J1-Pad1)">
+      <node ref="J1" pin="1"/>
+      <node ref="K1" pin="4"/>
+    </net>
+    <net code="19" name="Net-(J1-Pad2)">
+      <node ref="J1" pin="2"/>
+      <node ref="K1" pin="3"/>
+    </net>
+    <net code="20" name="Net-(CON3-Pad2)">
+      <node ref="CON3" pin="2"/>
+      <node ref="U2" pin="P$11"/>
+    </net>
+    <net code="21" name="Net-(CON4-Pad2)">
+      <node ref="U2" pin="P$10"/>
+      <node ref="CON4" pin="2"/>
+    </net>
+    <net code="22" name="Net-(J9-Pad2)">
+      <node ref="U2" pin="P$7"/>
+      <node ref="R10" pin="2"/>
+      <node ref="J9" pin="2"/>
+    </net>
+    <net code="23" name="Net-(J8-Pad2)">
+      <node ref="U2" pin="P$8"/>
+      <node ref="R9" pin="2"/>
+      <node ref="J8" pin="2"/>
+    </net>
+    <net code="24" name="Net-(CON1-Pad3)">
+      <node ref="J7" pin="1"/>
+      <node ref="CON4" pin="3"/>
+      <node ref="U2" pin="P$4"/>
+      <node ref="CON3" pin="3"/>
+      <node ref="R9" pin="1"/>
+      <node ref="R10" pin="1"/>
+      <node ref="J8" pin="1"/>
+      <node ref="J9" pin="1"/>
+      <node ref="R8" pin="1"/>
+      <node ref="D11" pin="2"/>
+      <node ref="R6" pin="1"/>
+      <node ref="CON1" pin="3"/>
+      <node ref="CON2" pin="3"/>
+    </net>
+    <net code="25" name="Net-(U1-PadP$3)">
+      <node ref="U1" pin="P$3"/>
+    </net>
+    <net code="26" name="Net-(U1-PadP$15)">
+      <node ref="U1" pin="P$15"/>
+    </net>
+    <net code="27" name="Net-(U1-PadP$14)">
+      <node ref="U1" pin="P$14"/>
+    </net>
+    <net code="28" name="Net-(U1-PadP$13)">
+      <node ref="U1" pin="P$13"/>
+    </net>
+    <net code="29" name="Net-(Q1-Pad6)">
+      <node ref="Q1" pin="6"/>
+      <node ref="U1" pin="P$12"/>
+    </net>
+    <net code="30" name="Net-(Q1-Pad5)">
+      <node ref="Q1" pin="5"/>
+      <node ref="U1" pin="P$11"/>
+    </net>
+    <net code="31" name="Net-(Q1-Pad3)">
+      <node ref="U1" pin="P$9"/>
+      <node ref="Q1" pin="3"/>
+    </net>
+    <net code="32" name="Net-(Q1-Pad2)">
+      <node ref="U1" pin="P$8"/>
+      <node ref="Q1" pin="2"/>
+    </net>
+    <net code="33" name="Net-(Q1-Pad1)">
+      <node ref="U1" pin="P$7"/>
+      <node ref="Q1" pin="1"/>
+    </net>
+    <net code="34" name="Net-(U1-PadP$4)">
+      <node ref="U1" pin="P$4"/>
+    </net>
+    <net code="35" name="Net-(U1-PadP$2)">
+      <node ref="U1" pin="P$2"/>
+    </net>
+    <net code="36" name="Net-(U1-PadP$1)">
+      <node ref="U1" pin="P$1"/>
+    </net>
+    <net code="37" name="Net-(U2-PadP$13)">
+      <node ref="U2" pin="P$13"/>
+    </net>
+    <net code="44" name="Net-(U2-PadP$15)">
+      <node ref="U2" pin="P$15"/>
+    </net>
+    <net code="45" name="Net-(U2-PadP$14)">
+      <node ref="U2" pin="P$14"/>
+    </net>
+    <net code="46" name="Net-(D11-Pad1)">
+      <node ref="U2" pin="P$9"/>
+      <node ref="R7" pin="2"/>
+      <node ref="D11" pin="1"/>
+    </net>
+    <net code="47" name="Net-(Q1-Pad7)">
+      <node ref="Q1" pin="7"/>
+      <node ref="U2" pin="P$6"/>
+    </net>
+    <net code="48" name="Net-(U2-PadP$5)">
+      <node ref="U2" pin="P$5"/>
+    </net>
+    <net code="49" name="Net-(U2-PadP$3)">
+      <node ref="U2" pin="P$3"/>
+    </net>
+    <net code="50" name="Net-(D7-Pad2)">
+      <node ref="K4" pin="1"/>
+      <node ref="D7" pin="2"/>
+      <node ref="Q1" pin="13"/>
+    </net>
+    <net code="51" name="+12V">
+      <node ref="K2" pin="2"/>
+      <node ref="D3" pin="1"/>
+      <node ref="D8" pin="2"/>
+      <node ref="D4" pin="2"/>
+      <node ref="D6" pin="2"/>
+      <node ref="D9" pin="1"/>
+      <node ref="D10" pin="2"/>
+      <node ref="Q1" pin="9"/>
+      <node ref="K5" pin="2"/>
+      <node ref="J2" pin="1"/>
+      <node ref="K3" pin="2"/>
+      <node ref="U2" pin="P$1"/>
+      <node ref="D2" pin="2"/>
+      <node ref="K1" pin="2"/>
+      <node ref="D1" pin="1"/>
+      <node ref="D7" pin="1"/>
+      <node ref="D5" pin="1"/>
+      <node ref="K4" pin="2"/>
+    </net>
+    <net code="52" name="Net-(D8-Pad1)">
+      <node ref="R4" pin="1"/>
+      <node ref="D8" pin="1"/>
+    </net>
+    <net code="53" name="Net-(D6-Pad1)">
+      <node ref="R3" pin="1"/>
+      <node ref="D6" pin="1"/>
+    </net>
+    <net code="54" name="Net-(D4-Pad1)">
+      <node ref="R2" pin="1"/>
+      <node ref="D4" pin="1"/>
+    </net>
+    <net code="55" name="Net-(D9-Pad2)">
+      <node ref="Q1" pin="12"/>
+      <node ref="D9" pin="2"/>
+      <node ref="K5" pin="1"/>
+    </net>
+    <net code="56" name="Net-(Q1-Pad4)">
+      <node ref="U1" pin="P$10"/>
+      <node ref="Q1" pin="4"/>
+    </net>
+    <net code="57" name="Net-(Q1-Pad11)">
+      <node ref="Q1" pin="11"/>
+    </net>
+    <net code="58" name="Net-(Q1-Pad10)">
+      <node ref="Q1" pin="10"/>
+    </net>
+    <net code="59" name="Net-(D3-Pad2)">
+      <node ref="K2" pin="1"/>
+      <node ref="D3" pin="2"/>
+      <node ref="Q1" pin="15"/>
+    </net>
+  </nets>
+</export>

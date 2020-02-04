@@ -1,0 +1,5 @@
+(fp_lib_table
+  (lib (name PPTC151LFBN-RC)(type KiCad)(uri /home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries/PPTC151LFBN-RC)(options "")(descr ""))
+  (lib (name T9AS1D12-15)(type KiCad)(uri /home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries/T9AS1D12-15)(options "")(descr ""))
+  (lib (name libraries)(type KiCad)(uri /home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries)(options "")(descr ""))
+)
