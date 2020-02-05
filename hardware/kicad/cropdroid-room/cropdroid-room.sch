@@ -557,14 +557,14 @@ F 3 "http://www.vishay.com/docs/88503/1n4001.pdf" H 6800 6850 50  0001 C CNN
 	1    6800 6850
 	0    -1   -1   0   
 $EndComp
-Text Notes 4100 7300 0    50   ~ 0
-A/C
-Text Notes 5200 7300 0    50   ~ 0
-Heater
+Text Notes 4000 7300 0    50   ~ 0
+Channel 1
+Text Notes 5100 7300 0    50   ~ 0
+Channel 2
 Text Notes 6100 7300 0    50   ~ 0
-Dehumidifier
+Channel 3
 Text Notes 7150 7300 0    50   ~ 0
-Ventiliation
+Channel 4
 $Comp
 L Device:LED D4
 U 1 1 5E6256C5
@@ -1115,8 +1115,8 @@ Wire Wire Line
 Wire Wire Line
 	2900 8300 3950 8300
 Connection ~ 3950 8300
-Text Notes 3000 7300 0    50   ~ 0
-Lighting
+Text Notes 2950 7300 0    50   ~ 0
+Channel 0
 Connection ~ 4650 5450
 Wire Wire Line
 	4650 5450 5700 5450
@@ -2440,4 +2440,10 @@ A1 D3 A7 4F 9F 36 6D DA B8 71 E3 AE ED B5 5D CB D1 75 17 3A 01 B2 B3 B3 01 C0 64
 CF F3 57 FA 5C AE 6A FC 7F D1 99 40 27 99 F9 24 50 00 00 00 00 49 45 4E 44 AE 42 60 82 
 EndData
 $EndBitmap
+Text Notes 10500 2300 0    50   ~ 0
+DHT22\nTop
+Text Notes 11550 2300 0    50   ~ 0
+DHT22\nCanopy
+Text Notes 12600 2300 0    50   ~ 0
+DHT22\nBottom
 $EndSCHEMATC
