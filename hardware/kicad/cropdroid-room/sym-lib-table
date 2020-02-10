@@ -1,4 +1,9 @@
 (sym_lib_table
   (lib (name PPTC151LFBN-RC)(type Legacy)(uri /home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries/PPTC151LFBN-RC/PPTC151LFBN-RC.lib)(options "")(descr ""))
   (lib (name T9AS1D12-15)(type Legacy)(uri /home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries/T9AS1D12-15/T9AS1D12-15.lib)(options "")(descr ""))
+  (lib (name 703W-00_52)(type Legacy)(uri /home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries/703W-00_52/703W-00_52.lib)(options "")(descr ""))
+  (lib (name IRM-30-12)(type Legacy)(uri /home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries/IRM-30-12/IRM-30-12.lib)(options "")(descr ""))
+  (lib (name PSK-6B-S5)(type Legacy)(uri /home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries/PSK-6B-S5/PSK-6B-S5.lib)(options "")(descr ""))
+  (lib (name TB005-762-02BE)(type Legacy)(uri /home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries/TB005-762-02BE/TB005-762-02BE.lib)(options "")(descr ""))
+  (lib (name 3-213598-2)(type Legacy)(uri /home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries/3-213598-2/3-213598-2.lib)(options "")(descr ""))
 )

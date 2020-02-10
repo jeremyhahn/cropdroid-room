@@ -1,6 +1,68 @@
 EESchema-LIBRARY Version 2.4
 #encoding utf-8
 #
+# 3-213598-2_3-213598-2
+#
+DEF 3-213598-2_3-213598-2 J 0 40 Y N 1 L N
+F0 "J" -260 125 50 H V L BNN
+F1 "3-213598-2_3-213598-2" -280 -290 50 H V L BNN
+F2 "TE_3-213598-2" 0 0 50 H I L BNN
+F3 "https://www.te.com/usa-en/product-3-213598-2.html?te_bu=Cor&te_type=disp&te_campaign=seda_glo_cor-seda-global-disp-prtnr-fy19-seda-model-bom-cta_sma-317_1&elqCampaignId=32493" 0 0 50 H I L BNN
+F4 "Compliant" 0 0 50 H I L BNN
+F5 "3-213598-2" 0 0 50 H I L BNN
+F6 "Convenience Outlet" 0 0 50 H I L BNN
+DRAW
+A 0 -50 20 -1 1800 0 0 6 N -20 -50 20 -50
+C 0 0 100 0 0 6 N
+P 2 0 0 6 -100 0 -60 0 N
+P 2 0 0 6 -60 -40 -60 0 N
+P 2 0 0 6 -60 0 -60 40 N
+P 2 0 0 6 -60 40 -30 40 N
+P 2 0 0 6 -30 -40 -60 -40 N
+P 2 0 0 6 -30 40 -30 -40 N
+P 2 0 0 6 -20 -80 -20 -50 N
+P 2 0 0 6 0 -80 -20 -80 N
+P 2 0 0 6 0 -80 0 -100 N
+P 2 0 0 6 20 -80 0 -80 N
+P 2 0 0 6 20 -50 20 -80 N
+P 2 0 0 6 30 -40 30 40 N
+P 2 0 0 6 30 40 60 40 N
+P 2 0 0 6 60 -40 30 -40 N
+P 2 0 0 6 60 0 60 -40 N
+P 2 0 0 6 60 0 110 0 N
+P 2 0 0 6 60 40 60 0 N
+X 1 1 -200 0 100 R 40 40 0 0 P
+X 2 2 200 0 100 L 40 40 0 0 P
+X 3 3 0 -200 100 U 40 40 0 0 P
+ENDDRAW
+ENDDEF
+#
+# 703W-00_52_703W-00_52
+#
+DEF 703W-00_52_703W-00_52 J 0 40 Y Y 1 L N
+F0 "J" -200 220 50 H V L BNN
+F1 "703W-00_52_703W-00_52" -200 -300 50 H V L BNN
+F2 "QUALTEK_703W-00/52" 0 0 50 H I L BNN
+F3 "Qualtek" 0 0 50 H I L BNN
+F4 "B" 0 0 50 H I L BNN
+F5 "Manufacturer Recommendations" 0 0 50 H I L BNN
+DRAW
+C 100 -50 7 0 0 10 N
+C 100 -50 10 0 0 10 N
+C 100 0 100 0 0 10 N
+S 50 -20 70 50 0 0 0 F
+S 130 -20 150 50 0 0 0 F
+S 130 -20 150 50 0 0 0 F
+P 2 0 0 10 -200 -200 -200 200 N
+P 2 0 0 10 -200 200 300 200 N
+P 2 0 0 10 300 -200 -200 -200 N
+P 2 0 0 10 300 200 300 -200 N
+X L 1 -400 100 200 R 40 40 0 0 W
+X E 2 -400 -100 200 R 40 40 0 0 W
+X N 3 -400 0 200 R 40 40 0 0 W
+ENDDRAW
+ENDDEF
+#
 # Device_D_Photo
 #
 DEF Device_D_Photo D 0 20 N N 1 F N
@@ -77,6 +139,22 @@ P 2 0 1 0 50 0 -50 0 N
 P 4 0 1 10 50 50 50 -50 -50 0 50 50 N
 X K 1 -150 0 100 R 50 50 1 1 P
 X A 2 150 0 100 L 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# IRM-30-12_IRM-30-12
+#
+DEF IRM-30-12_IRM-30-12 U 0 40 Y Y 1 F N
+F0 "U" 0 200 50 H V C CNN
+F1 "IRM-30-12_IRM-30-12" 0 -150 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 5 0 1 0 -250 150 250 150 250 -100 -250 -100 -250 150 N
+X AC/L 1 -350 100 100 R 50 50 1 1 I
+X AC/N 2 -350 -50 100 R 50 50 1 1 I
+X -V 3 350 100 100 L 50 50 1 1 I
+X +V 4 350 -50 100 L 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
@@ -170,92 +248,6 @@ X R 3 400 100 200 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# dk_Barrel-Power-Connectors_PJ-102A
-#
-DEF dk_Barrel-Power-Connectors_PJ-102A J 0 40 Y Y 1 F N
-F0 "J" 0 100 50 H V C CNN
-F1 "dk_Barrel-Power-Connectors_PJ-102A" 0 -250 50 H V C CNN
-F2 "digikey-footprints:Barrel_Jack_5.5mmODx2.1mmID_PJ-102A" 200 200 60 H I L CNN
-F3 "https://www.cui.com/product/resource/digikeypdf/pj-102a.pdf" 200 300 60 H I L CNN
-F4 "CP-102A-ND" 200 400 60 H I L CNN "Digi-Key_PN"
-F5 "PJ-102A" 200 500 60 H I L CNN "MPN"
-F6 "Connectors, Interconnects" 200 600 60 H I L CNN "Category"
-F7 "Barrel - Power Connectors" 200 700 60 H I L CNN "Family"
-F8 "https://www.cui.com/product/resource/digikeypdf/pj-102a.pdf" 200 800 60 H I L CNN "DK_Datasheet_Link"
-F9 "/product-detail/en/cui-inc/PJ-102A/CP-102A-ND/275425" 200 900 60 H I L CNN "DK_Detail_Page"
-F10 "CONN PWR JACK 2X5.5MM SOLDER" 200 1000 60 H I L CNN "Description"
-F11 "CUI Inc." 200 1100 60 H I L CNN "Manufacturer"
-F12 "Active" 200 1200 60 H I L CNN "Status"
-DRAW
-A -175 0 25 901 -901 0 1 0 N -175 25 -175 -25
-S -25 50 0 -50 0 1 0 N
-P 2 0 1 0 -25 -25 -175 -25 N
-P 2 0 1 0 -25 25 -175 25 N
-P 3 0 1 0 0 -100 -50 -100 -100 -100 N
-P 4 0 1 0 0 -200 -150 -200 -200 -150 -250 -200 N
-P 5 0 1 0 -100 -100 -125 -100 -100 -150 -75 -100 -100 -100 N
-X ~ 1 100 0 100 L 50 50 1 1 P
-X ~ 2 100 -200 100 L 50 50 1 1 P
-X ~ 3 100 -100 100 L 50 50 1 1 P
-ENDDRAW
-ENDDEF
-#
-# dk_Rectangular-Connectors-Headers-Male-Pins_640456-3
-#
-DEF dk_Rectangular-Connectors-Headers-Male-Pins_640456-3 J 0 40 Y Y 1 F N
-F0 "J" -100 50 50 H V R CNN
-F1 "dk_Rectangular-Connectors-Headers-Male-Pins_640456-3" 100 -150 50 H V C CNN
-F2 "digikey-footprints:PinHeader_1x3_P2.54_Drill1.1mm" 200 200 60 H I L CNN
-F3 "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=640456&DocType=Customer+Drawing&DocLang=English" 200 300 60 H I L CNN
-F4 "A19470-ND" 200 400 60 H I L CNN "Digi-Key_PN"
-F5 "640456-3" 200 500 60 H I L CNN "MPN"
-F6 "Connectors, Interconnects" 200 600 60 H I L CNN "Category"
-F7 "Rectangular Connectors - Headers, Male Pins" 200 700 60 H I L CNN "Family"
-F8 "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=640456&DocType=Customer+Drawing&DocLang=English" 200 800 60 H I L CNN "DK_Datasheet_Link"
-F9 "/product-detail/en/te-connectivity-amp-connectors/640456-3/A19470-ND/259010" 200 900 60 H I L CNN "DK_Detail_Page"
-F10 "CONN HEADER VERT 3POS 2.54MM" 200 1000 60 H I L CNN "Description"
-F11 "TE Connectivity AMP Connectors" 200 1100 60 H I L CNN "Manufacturer"
-F12 "Active" 200 1200 60 H I L CNN "Status"
-DRAW
-S -50 0 250 -100 1 1 0 f
-S -10 -45 10 -65 1 1 0 F
-S 90 -45 110 -65 1 1 0 F
-S 190 -45 210 -65 1 1 0 F
-X ~ 1 0 100 100 D 50 50 1 1 P
-X ~ 2 100 100 100 D 50 50 1 1 P
-X ~ 3 200 100 100 D 50 50 1 1 P
-ENDDRAW
-ENDDEF
-#
-# dk_Terminal-Blocks-Wire-to-Board_OSTTC020162
-#
-DEF dk_Terminal-Blocks-Wire-to-Board_OSTTC020162 J 0 40 Y Y 1 F N
-F0 "J" -100 50 50 H V R CNN
-F1 "dk_Terminal-Blocks-Wire-to-Board_OSTTC020162" 50 -100 50 H V C CNN
-F2 "digikey-footprints:Term_Block_1x2_P5mm" 200 200 60 H I L CNN
-F3 "http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf" 200 300 60 H I L CNN
-F4 "ED2600-ND" 200 400 60 H I L CNN "Digi-Key_PN"
-F5 "OSTTC020162" 200 500 60 H I L CNN "MPN"
-F6 "Connectors, Interconnects" 200 600 60 H I L CNN "Category"
-F7 "Terminal Blocks - Wire to Board" 200 700 60 H I L CNN "Family"
-F8 "http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf" 200 800 60 H I L CNN "DK_Datasheet_Link"
-F9 "/product-detail/en/on-shore-technology-inc/OSTTC020162/ED2600-ND/614549" 200 900 60 H I L CNN "DK_Detail_Page"
-F10 "TERM BLK 2POS SIDE ENTRY 5MM PCB" 200 1000 60 H I L CNN "Description"
-F11 "On Shore Technology Inc." 200 1100 60 H I L CNN "Manufacturer"
-F12 "Active" 200 1200 60 H I L CNN "Status"
-DRAW
-C 0 0 25 1 1 0 N
-C 100 0 25 1 1 0 N
-S -50 100 150 -50 1 1 0 f
-P 2 1 1 0 0 25 0 -25 N
-P 2 1 1 0 25 0 -25 0 N
-P 2 1 1 0 75 0 125 0 N
-P 2 1 1 0 100 25 100 -25 N
-X ~ 1 0 200 100 D 50 50 1 1 P
-X ~ 2 100 200 100 D 50 50 1 1 P
-ENDDRAW
-ENDDEF
-#
 # dk_Transistors-Bipolar-BJT-Arrays_ULN2003AN
 #
 DEF dk_Transistors-Bipolar-BJT-Arrays_ULN2003AN Q 0 0 Y Y 1 F N
@@ -318,21 +310,6 @@ X IN_6 6 -400 -200 200 R 50 50 1 1 I
 X IN_7 7 -400 -300 200 R 50 50 1 1 I
 X GND 8 0 -600 200 U 50 50 1 1 W
 X COM 9 300 400 200 L 50 50 1 1 O
-ENDDRAW
-ENDDEF
-#
-# power_+12V
-#
-DEF power_+12V #PWR 0 0 Y Y 1 F P
-F0 "#PWR" 0 -150 50 H I C CNN
-F1 "power_+12V" 0 140 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 2 0 1 0 -30 50 0 100 N
-P 2 0 1 0 0 0 0 100 N
-P 2 0 1 0 0 100 30 50 N
-X +12V 1 0 0 0 U 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
