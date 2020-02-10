@@ -1,5 +1,5 @@
 
-(module QUALTEK_703W-00/52 (layer F.Cu) (tedit 5E3CB15E)
+(module QUALTEK_703W-00/52 (layer F.Cu) (tedit 5E411E82)
   (descr "")
   (fp_text reference REF** (at -6.81875 -4.83625 0) (layer F.SilkS)
     (effects (font (size 1.00196850394 1.00196850394) (thickness 0.015)))
