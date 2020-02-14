@@ -2597,17 +2597,6 @@ F 3 "http://www.vishay.com/docs/88503/1n4001.pdf" H 13300 4400 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	13300 4550 13300 5900
-$Comp
-L Diode:1N4001 D1
-U 1 1 5EBC673C
-P 3200 3400
-F 0 "D1" V 3246 3320 50  0000 R CNN
-F 1 "1N4001" V 3155 3320 50  0000 R CNN
-F 2 "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal" H 3200 3225 50  0001 C CNN
-F 3 "http://www.vishay.com/docs/88503/1n4001.pdf" H 3200 3400 50  0001 C CNN
-	1    3200 3400
-	0    -1   -1   0   
-$EndComp
 Wire Wire Line
 	3200 3550 3200 4150
 $Comp
@@ -2625,7 +2614,6 @@ Wire Wire Line
 	12050 3900 12050 4050
 Wire Wire Line
 	11000 1200 11000 3150
-Connection ~ 11000 3450
 $Comp
 L power:GND #PWR013
 U 1 1 5E40B1F9
@@ -2654,17 +2642,6 @@ F 3 "http://www.vishay.com/docs/88503/1n4001.pdf" H 11450 1850 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	11000 1200 7850 1200
-$Comp
-L Diode:1N5400 D16
-U 1 1 5ECCD1A7
-P 11000 3300
-F 0 "D16" V 11046 3220 50  0000 R CNN
-F 1 "1N5400" V 10955 3220 50  0000 R CNN
-F 2 "Diode_THT:D_DO-201AD_P15.24mm_Horizontal" H 11000 3125 50  0001 C CNN
-F 3 "http://www.vishay.com/docs/88516/1n5400.pdf" H 11000 3300 50  0001 C CNN
-	1    11000 3300
-	0    -1   -1   0   
-$EndComp
 $Comp
 L Device:R R8
 U 1 1 5ED9BF4F
@@ -2784,5 +2761,28 @@ F 3 "http://www.vishay.com/docs/88503/1n4001.pdf" H 10500 8400 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	9450 1600 9450 1750
+	9450 1600 9450 1700
+$Comp
+L Diode:1N5400 D?
+U 1 1 5E4BA390
+P 3200 3400
+F 0 "D?" V 3246 3320 50  0000 R CNN
+F 1 "1N5400" V 3155 3320 50  0000 R CNN
+F 2 "Diode_THT:D_DO-201AD_P15.24mm_Horizontal" H 3200 3225 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/88516/1n5400.pdf" H 3200 3400 50  0001 C CNN
+	1    3200 3400
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Diode:1N4001 D?
+U 1 1 5E4CF1FB
+P 11000 3300
+F 0 "D?" V 11046 3220 50  0000 R CNN
+F 1 "1N4001" V 10955 3220 50  0000 R CNN
+F 2 "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal" H 11000 3125 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/88503/1n4001.pdf" H 11000 3300 50  0001 C CNN
+	1    11000 3300
+	0    -1   -1   0   
+$EndComp
+Connection ~ 11000 3450
 $EndSCHEMATC
