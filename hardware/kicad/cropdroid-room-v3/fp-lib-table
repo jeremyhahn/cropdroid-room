@@ -1,0 +1,10 @@
+(fp_lib_table
+  (lib (name PPTC151LFBN-RC)(type KiCad)(uri /home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries/PPTC151LFBN-RC)(options "")(descr ""))
+  (lib (name T9AS1D12-15)(type KiCad)(uri /home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries/T9AS1D12-15)(options "")(descr ""))
+  (lib (name 3-213598-2)(type KiCad)(uri /home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries/3-213598-2)(options "")(descr ""))
+  (lib (name 703W-00_52)(type KiCad)(uri /home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries/703W-00_52/QUALTEK_703W-00)(options "")(descr ""))
+  (lib (name drill-hole)(type KiCad)(uri /home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries/drill-hole.pretty)(options "")(descr ""))
+  (lib (name IRM-30-12)(type KiCad)(uri /home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries/IRM-30-12)(options "")(descr ""))
+  (lib (name PSK-6B-S5)(type KiCad)(uri /home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries/PSK-6B-S5)(options "")(descr ""))
+  (lib (name libraries)(type KiCad)(uri /home/jhahn/eclipse-workspace/cropdroid-room/hardware/kicad/libraries)(options "")(descr ""))
+)
