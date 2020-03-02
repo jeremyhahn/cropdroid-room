@@ -1,0 +1,5 @@
+-v0.5a
+- Replace audio jacks with micro usb
+- Add serial c02 attached to A6
+- Remove extraneous 1N5001 and 1N4001 short circuit protection diodes
+

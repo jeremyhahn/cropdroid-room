@@ -1,0 +1,30 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#(c) SnapEDA 2016 (snapeda.com)
+#This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA) with Design Exception 1.0
+#
+# 2172034-1
+#
+DEF 2172034-1 J 0 40 Y Y 1 L N
+F0 "J" -300 325 50 H V L BNN
+F1 "2172034-1" -300 -400 50 H V L BNN
+F2 "TE_2172034-1" 0 0 50 H I L BNN
+F3 "Compliant" 0 0 50 H I L BNN
+F4 "2172034-1" 0 0 50 H I L BNN
+F5 "https://www.te.com/usa-en/product-2172034-1.html?te_bu=Cor&te_type=disp&te_campaign=seda_glo_cor-seda-global-disp-prtnr-fy19-seda-model-bom-cta_sma-317_1&elqCampaignId=32493" 0 0 50 H I L BNN
+DRAW
+P 2 0 0 10 -300 -300 -300 300 N
+P 2 0 0 10 -300 300 300 300 N
+P 2 0 0 10 -300 -300 300 -300 N
+P 2 0 0 10 300 300 300 -300 N
+X VBUS 1 500 200 200 L 40 40 0 0 W 
+X D- 2 -500 -100 200 R 40 40 0 0 B 
+X D+ 3 -500 100 200 R 40 40 0 0 B 
+X ID 4 500 100 200 L 40 40 0 0 P 
+X GND 5 500 -200 200 L 40 40 0 0 W 
+X SHELL SH1 500 -100 200 L 40 40 0 0 W 
+X SHELL SH2 500 -100 200 L 40 40 0 0 W 
+ENDDRAW
+ENDDEF
+#
+# End Library
