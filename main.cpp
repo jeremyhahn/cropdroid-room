@@ -30,13 +30,13 @@ const int channels[channel_size] = {
 const char json_bracket_open[] = "{";
 const char json_bracket_close[] = "}";
 
-const char string_initializing[] PROGMEM = "Initializing room controller...";
+const char string_initializing[] PROGMEM = "Initializing room...";
 const char string_dhcp_failed[] PROGMEM = "DHCP Failed";
 const char string_http_200[] PROGMEM = "HTTP/1.1 200 OK";
 const char string_http_404[] PROGMEM = "HTTP/1.1 404 Not Found";
 const char string_http_500[] PROGMEM = "HTTP/1.1 500 Internal Server Error";
 const char string_http_content_type_json[] PROGMEM = "Content-Type: application/json";
-const char string_http_xpowered_by[] PROGMEM = "X-Powered-By: CropDroid v1.0";
+const char string_http_xpowered_by[] PROGMEM = "X-Powered-By: CropDroid";
 const char string_rest_address[] PROGMEM = "REST service listening on: ";
 const char string_switch_on[] PROGMEM = "Switching on";
 const char string_switch_off[] PROGMEM = "Switching off";
@@ -71,6 +71,8 @@ const char string_json_bracket_close[] PROGMEM = "}";
 const char string_json_error_invalid_channel[] PROGMEM = "{\"error\":\"Invalid channel\"}";
 const char string_json_reboot_true PROGMEM = "{\"reboot\":true}";
 const char string_json_reset_true PROGMEM = "{\"reset\":true}";
+const char string_hardware_version[] PROGMEM = "\"hardware\":\"room-v0.5a\",";
+const char string_firmware_version[] PROGMEM = "\"firmware\":\"0.0.2a\"";
 const char * const string_table[] PROGMEM = {
   string_initializing,
   string_dhcp_failed,
@@ -112,7 +114,9 @@ const char * const string_table[] PROGMEM = {
   string_json_bracket_close,
   string_json_error_invalid_channel,
   string_json_reboot_true,
-  string_json_reset_true
+  string_json_reset_true,
+  string_hardware_version,
+  string_firmware_version
 };
 int idx_initializing = 0,
     idx_dhcp_failed = 1,
@@ -154,7 +158,9 @@ int idx_initializing = 0,
 	idx_json_key_bracket_close = 37,
 	idx_json_error_invalid_channel = 38,
 	idx_json_reboot_true = 39,
-	idx_json_reset_true = 40;
+	idx_json_reset_true = 40,
+	idx_hardware_version = 41,
+	idx_firmware_version = 42;
 char string_buffer[50];
 char float_buffer[10];
 
@@ -235,7 +241,7 @@ void setup(void) {
   byte macByte1 = EEPROM.read(0);
 
   #if DEBUG || EEPROM_DEBUG
-    Serial.print("EEPROM.read(0): ");
+    Serial.print("EEPROM(0):");
     Serial.println(macByte1);
   #endif
 
@@ -254,7 +260,7 @@ void setup(void) {
   }
 
   #if DEBUG || EEPROM_DEBUG
-    Serial.print("MAC: ");
+    Serial.print("MAC:");
     for(int i=0; i<6; i++) {
       Serial.print(mac[i], HEX);
     }
@@ -303,7 +309,7 @@ void calculateVPD(float temp, float rh) {
   //VPD = svp * (1 - rh / 100);
 
 #if DEBUG
-  Serial.print("VPD: ");
+  Serial.print("VPD:");
   Serial.println(VPD);
 #endif
 }
@@ -313,9 +319,9 @@ void readPodTemps() {
   pod1Temp = sensors.getTempFByIndex(1);
 
 #if DEBUG
-  Serial.print("Pod 0 Temp: ");
+  Serial.print("Pod0:");
   Serial.println(pod0Temp);
-  Serial.print("Pod 1 Temp: ");
+  Serial.print("Pod1:");
   Serial.println(pod1Temp);
 #endif
 }
@@ -323,7 +329,7 @@ void readPodTemps() {
 void readPhoto() {
   photo = analogRead(PHOTO_PIN);
 #if DEBUG
-  Serial.print("Photo: ");
+  Serial.print("Photo:");
   Serial.println(photo);
 #endif
 }
@@ -353,13 +359,13 @@ void readRoomTempHumidity() {
   roomHeatIndex2 = zeroIfNan(roomDHT2.computeHeatIndex(roomTempF2, roomHumidity2));
 
 #if DEBUG
-  Serial.print("TempF: ");
+  Serial.print("TempF:");
   Serial.println(roomTempF0);
-  Serial.print("TempC: ");
+  Serial.print("TempC:");
   Serial.println(roomTempC0);
-  Serial.print("Humidity: ");
+  Serial.print("Humidity:");
   Serial.println(roomHumidity0);
-  Serial.print("HeatIndex: ");
+  Serial.print("HeatIndex:");
   Serial.println(roomHeatIndex0);
 #endif
 }
@@ -401,13 +407,13 @@ void readWaterLevels() {
 #if DEBUG
 
   itoa(waterLevel0, float_buffer, 10);
-  strcpy(string_buffer, "Water0: ");
+  strcpy(string_buffer, "Water0:");
   strcat(string_buffer, float_buffer);
   strcat(string_buffer, "%");
   Serial.println(string_buffer);
 
   itoa(waterLevel1, float_buffer, 10);
-  strcpy(string_buffer, "Water1: ");
+  strcpy(string_buffer, "Water1:");
   strcat(string_buffer, float_buffer);
   strcat(string_buffer, "%");
   Serial.println(string_buffer);
@@ -476,7 +482,7 @@ void handleWebRequest() {
 				char *resource = strtok(clientline, "/");
 				char *param1 = strtok(NULL, "/");
 				char *param2 = strtok(NULL, "/");
-
+/*
 				#if DEBUG
 				  Serial.print("Resource: ");
 				  Serial.println(resource);
@@ -487,7 +493,7 @@ void handleWebRequest() {
 				  Serial.print("Param2: ");
 				  Serial.println(param2);
 				#endif
-
+*/
 				// /status
 				if (strncmp(resource, "status", 6) == 0) {
 
@@ -700,6 +706,20 @@ void handleWebRequest() {
 
 					strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_reset_true])));
 					strcat(json, string_buffer);
+				}
+
+				// /sys
+				else if (strncmp(resource, "sys", 6) == 0) {
+
+					strcpy(json, json_bracket_open);
+
+						strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_hardware_version])));
+						strcat(json, string_buffer);
+
+						strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_firmware_version])));
+						strcat(json, string_buffer);
+
+					strcat(json, json_bracket_close);
 				}
 
 				else {

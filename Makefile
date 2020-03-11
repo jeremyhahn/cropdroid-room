@@ -9,8 +9,11 @@ CONF=-C/home/jhahn/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino14/etc
 
 default: flash
 
-flash:
-	$(AVRDUDE) -c usbasp -p m328p -u -U flash:w:build/Nano/cropdroid-room.hex
+#flash:
+#	$(AVRDUDE) -c usbasp -p m328p -u -U flash:w:build/Nano/cropdroid-room.hex
+
+flash-usbasp:
+	avrdude -c usbasp -p m328p -u -U flash:w:build/Nano/cropdroid-room.hex
 
 flash-nano:
 	avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b115200 -D -U flash:w:build/Nano/cropdroid-room.hex
