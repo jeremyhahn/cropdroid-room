@@ -54,26 +54,26 @@ const char string_rest_address[] PROGMEM = "REST service listening on: ";
 const char string_switch_on[] PROGMEM = "Switching on";
 const char string_switch_off[] PROGMEM = "Switching off";
 const char string_json_key_mem[] PROGMEM = "\"mem\":";
-const char string_json_key_tempF0[] PROGMEM = "\"tempF0\":";
-const char string_json_key_tempC0[] PROGMEM = "\"tempC0\":";
-const char string_json_key_humidity0[] PROGMEM = "\"humidity0\":";
-const char string_json_key_heatIndex0[] PROGMEM = "\"heatIndex0\":";
-const char string_json_key_tempF1[] PROGMEM = "\"tempF1\":";
-const char string_json_key_tempC1[] PROGMEM = "\"tempC1\":";
-const char string_json_key_humidity1[] PROGMEM = "\"humidity1\":";
-const char string_json_key_heatIndex1[] PROGMEM = "\"heatIndex1\":";
-const char string_json_key_tempF2[] PROGMEM = "\"tempF2\":";
-const char string_json_key_tempC2[] PROGMEM = "\"tempC2\":";
-const char string_json_key_humidity2[] PROGMEM = "\"humidity2\":";
-const char string_json_key_heatIndex2[] PROGMEM = "\"heatIndex2\":";
-const char string_json_key_vpd[] PROGMEM = "\"vpd\":";
-const char string_json_key_water0[] PROGMEM = "\"water0\":";
-const char string_json_key_water1[] PROGMEM = "\"water1\":";
-const char string_json_key_co2[] PROGMEM = "\"co2\":";
-const char string_json_key_leak0[] PROGMEM = "\"leak0\":";
-const char string_json_key_leak1[] PROGMEM = "\"leak1\":";
-const char string_json_key_photo[] PROGMEM = "\"photo\":";
-const char string_json_key_metrics[] PROGMEM = "\"metrics\":[";
+const char string_json_key_tempF0[] PROGMEM = ",\"tempF0\":";
+const char string_json_key_tempC0[] PROGMEM = ",\"tempC0\":";
+const char string_json_key_humidity0[] PROGMEM = ",\"humidity0\":";
+const char string_json_key_heatIndex0[] PROGMEM = ",\"heatIndex0\":";
+const char string_json_key_tempF1[] PROGMEM = ",\"tempF1\":";
+const char string_json_key_tempC1[] PROGMEM = ",\"tempC1\":";
+const char string_json_key_humidity1[] PROGMEM = ",\"humidity1\":";
+const char string_json_key_heatIndex1[] PROGMEM = ",\"heatIndex1\":";
+const char string_json_key_tempF2[] PROGMEM = ",\"tempF2\":";
+const char string_json_key_tempC2[] PROGMEM = ",\"tempC2\":";
+const char string_json_key_humidity2[] PROGMEM = ",\"humidity2\":";
+const char string_json_key_heatIndex2[] PROGMEM = ",\"heatIndex2\":";
+const char string_json_key_vpd[] PROGMEM = ",\"vpd\":";
+const char string_json_key_water0[] PROGMEM = ",\"water0\":";
+const char string_json_key_water1[] PROGMEM = ",\"water1\":";
+const char string_json_key_co2[] PROGMEM = ",\"co2\":";
+const char string_json_key_leak0[] PROGMEM = ",\"leak0\":";
+const char string_json_key_leak1[] PROGMEM = ",\"leak1\":";
+const char string_json_key_photo[] PROGMEM = ",\"photo\":";
+const char string_json_key_metrics[] PROGMEM = "\"metrics\":{";
 const char string_json_key_channels[] PROGMEM = ",\"channels\":[";
 const char string_json_key_channel[] PROGMEM = "\"channel\":";
 const char string_json_key_pin[] PROGMEM = ",\"pin\":";
@@ -546,166 +546,107 @@ void handleWebRequest() {
 					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_metrics])));
 					  strcat(json, string_buffer);
 
-					    strcat(json, json_bracket_open);
 					    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_mem])));
 					    strcat(json, string_buffer);
 					    itoa(availableMemory(), float_buffer, 10);
 					    strcat(json, float_buffer);
-					    strcat(json, json_bracket_close);
-					    strcat(json, json_comma);
 
-					    strcat(json, json_bracket_open);
 					    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_tempF0])));
 					    strcat(json, string_buffer);
 					    dtostrf(roomTempF0, 4, 2, float_buffer);
 					    strcat(json, float_buffer);
-					    strcat(json, json_bracket_close);
-					    strcat(json, json_comma);
 
-					    strcat(json, json_bracket_open);
 					    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_tempC0])));
 					    strcat(json, string_buffer);
 					    dtostrf(roomTempC0, 4, 2, float_buffer);
 					    strcat(json, float_buffer);
-					    strcat(json, json_bracket_close);
-					    strcat(json, json_comma);
 
-					    strcat(json, json_bracket_open);
 					    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_humidity0])));
 					    strcat(json, string_buffer);
 					    dtostrf(roomHumidity0, 4, 2, float_buffer);
 					    strcat(json, float_buffer);
-					    strcat(json, json_bracket_close);
-					    strcat(json, json_comma);
 
-					    strcat(json, json_bracket_open);
 					    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_heatIndex0])));
 					    strcat(json, string_buffer);
 					    dtostrf(roomHeatIndex0, 4, 2, float_buffer);
 					    strcat(json, float_buffer);
-					    strcat(json, json_bracket_close);
-					    strcat(json, json_comma);
 
-					    strcat(json, json_bracket_open);
 					    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_tempF1])));
 					    strcat(json, string_buffer);
 					    dtostrf(roomTempF1, 4, 2, float_buffer);
 					    strcat(json, float_buffer);
-					    strcat(json, json_bracket_close);
-					    strcat(json, json_comma);
 
-					    strcat(json, json_bracket_open);
 					    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_tempC1])));
 					    strcat(json, string_buffer);
 					    dtostrf(roomTempC1, 4, 2, float_buffer);
 					    strcat(json, float_buffer);
-					    strcat(json, json_bracket_close);
-					    strcat(json, json_comma);
 
-					    strcat(json, json_bracket_open);
 					    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_humidity1])));
 					    strcat(json, string_buffer);
 					    dtostrf(roomHumidity1, 4, 2, float_buffer);
 					    strcat(json, float_buffer);
-					    strcat(json, json_bracket_close);
-					    strcat(json, json_comma);
 
-					    strcat(json, json_bracket_open);
 					    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_heatIndex1])));
 					    strcat(json, string_buffer);
 					    dtostrf(roomHeatIndex1, 4, 2, float_buffer);
 					    strcat(json, float_buffer);
-					    strcat(json, json_bracket_close);
-					    strcat(json, json_comma);
 
-					    strcat(json, json_bracket_open);
 					    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_tempF2])));
 					    strcat(json, string_buffer);
 					    dtostrf(roomTempF2, 4, 2, float_buffer);
 					    strcat(json, float_buffer);
-					    strcat(json, json_bracket_close);
-					    strcat(json, json_comma);
 
-					    strcat(json, json_bracket_open);
 					    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_tempC2])));
 					    strcat(json, string_buffer);
 					    dtostrf(roomTempC2, 4, 2, float_buffer);
 					    strcat(json, float_buffer);
-					    strcat(json, json_bracket_close);
-					    strcat(json, json_comma);
 
-					    strcat(json, json_bracket_open);
 					    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_humidity2])));
 					    strcat(json, string_buffer);
 					    dtostrf(roomHumidity2, 4, 2, float_buffer);
 					    strcat(json, float_buffer);
-					    strcat(json, json_bracket_close);
-					    strcat(json, json_comma);
 
-					    strcat(json, json_bracket_open);
 					    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_heatIndex2])));
 					    strcat(json, string_buffer);
 					    dtostrf(roomHeatIndex2, 4, 2, float_buffer);
 					    strcat(json, float_buffer);
-					    strcat(json, json_bracket_close);
-					    strcat(json, json_comma);
 
-					    strcat(json, json_bracket_open);
 					    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_vpd])));
 					    strcat(json, string_buffer);
 					    dtostrf(VPD, 4, 2, float_buffer);
 					    strcat(json, float_buffer);
-					    strcat(json, json_bracket_close);
-					    strcat(json, json_comma);
 
-					    strcat(json, json_bracket_open);
 					    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_water0])));
 					    strcat(json, string_buffer);
 					    dtostrf(water0Temp, 4, 2, float_buffer);
 					    strcat(json, float_buffer);
-					    strcat(json, json_bracket_close);
-					    strcat(json, json_comma);
 
-					    strcat(json, json_bracket_open);
 					    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_water1])));
 					    strcat(json, string_buffer);
 					    dtostrf(water1Temp, 4, 2, float_buffer);
 					    strcat(json, float_buffer);
-					    strcat(json, json_bracket_close);
-					    strcat(json, json_comma);
 
-					    strcat(json, json_bracket_open);
 					    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_co2])));
 					    strcat(json, string_buffer);
 					    dtostrf(CO2PPM, 4, 2, float_buffer);
 					    strcat(json, float_buffer);
-					    strcat(json, json_bracket_close);
-					    strcat(json, json_comma);
 
-					    strcat(json, json_bracket_open);
 					    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_leak0])));
 					    strcat(json, string_buffer);
 					    itoa(waterLevel0, float_buffer, 10);
 					    strcat(json, float_buffer);
-					    strcat(json, json_bracket_close);
-					    strcat(json, json_comma);
 
-					    strcat(json, json_bracket_open);
 					    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_leak1])));
 					    strcat(json, string_buffer);
 					    itoa(waterLevel1, float_buffer, 10);
 					    strcat(json, float_buffer);
-					    strcat(json, json_bracket_close);
-					    strcat(json, json_comma);
 
-					    strcat(json, json_bracket_open);
 					    strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_photo])));
 					  	strcat(json, string_buffer);
 					  	itoa(photo, float_buffer, 10);
 					  	strcat(json, float_buffer);
-					  	strcat(json, json_bracket_close);
 
-					  strcat(json, json_array_bracket_close);
+					  strcat(json, json_bracket_close);
 
 					  strcpy_P(string_buffer, (char*)pgm_read_word(&(string_table[idx_json_key_channels])));
 					  strcat(json, string_buffer);
