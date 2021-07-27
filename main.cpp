@@ -7,7 +7,7 @@
 #include "EEPROM.h"
 
 #define DEBUG 0
-#define EEPROM_DEBUG 0
+#define EEPROM_DEBUG 1
 #define BUFSIZE 100
 #define CHANNEL_SIZE 6
 
@@ -17,8 +17,8 @@
 #define WATER0_PIN A1
 #define WATER1_PIN A2
 #define PHOTO_PIN A3
-#define DHT_ROOM_PIN2 A4
-#define DHT_ROOM_PIN3 A5
+#define DHT_ROOM_PIN2 A6
+#define DHT_ROOM_PIN3 A7
 #define DIGITAL_CO2_PIN A6
 
 extern int  __bss_end;
@@ -85,8 +85,8 @@ const char string_json_bracket_close[] PROGMEM = "}";
 const char string_json_error_invalid_channel[] PROGMEM = "\"error\":\"Invalid channel\"";
 const char string_json_reboot_true PROGMEM = "\"reboot\":true";
 const char string_json_reset_true PROGMEM = "\"reset\":true";
-const char string_hardware_version[] PROGMEM = "\"hardware\":\"room-v0.5a\",";
-const char string_firmware_version[] PROGMEM = "\"firmware\":\"0.0.3a\"";
+const char string_hardware_version[] PROGMEM = "\"hardware\":\"room-v0.7a\",";
+const char string_firmware_version[] PROGMEM = "\"firmware\":\"0.0.4a\"";
 const char string_json_key_uptime[] PROGMEM = ",\"uptime\":";
 const char * const string_table[] PROGMEM = {
   string_initializing,
@@ -475,7 +475,7 @@ void handleWebRequest() {
 				digitalWrite(channel_table[i][0], LOW);
 
 				#if DEBUG
-				  Serial.print("Turning channel ");
+				  Serial.print("Channel ");
 				  Serial.print(i);
 				  Serial.print(" (pin ");
 				  Serial.print(channel_table[i][0]);
@@ -493,7 +493,7 @@ void handleWebRequest() {
 
 	httpClient = httpServer.available();
 
-	char clientline[BUFSIZE];
+	char clientline[BUFSIZE] = {0};
 	int index = 0;
 
 	bool reboot = false;
@@ -678,7 +678,7 @@ void handleWebRequest() {
 					int channel = atoi(param1);
 					unsigned long duration = strtoul(param2, NULL, 10);
 
-					if(channel >= 0 && channel < (CHANNEL_SIZE -1) && duration > 0) {
+					if(channel >= 0 && channel < CHANNEL_SIZE && duration > 0) {
 
 						#if DEBUG
 						  Serial.print("Channel: ");
@@ -720,7 +720,7 @@ void handleWebRequest() {
 					int channel = atoi(param1);
 					int position = atoi(param2);
 
-					if(channel >= 0 && channel <= (CHANNEL_SIZE-1)) {
+					if(channel >= 0 && channel < CHANNEL_SIZE) {
 						valid = true;
 					}
 
