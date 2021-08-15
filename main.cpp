@@ -17,9 +17,8 @@
 #define WATER0_PIN A1
 #define WATER1_PIN A2
 #define PHOTO_PIN A3
-#define DHT_ROOM_PIN2 A6
-#define DHT_ROOM_PIN3 A7
-#define DIGITAL_CO2_PIN A6
+#define DHT_ROOM_PIN2 A4
+#define DHT_ROOM_PIN3 A5
 
 extern int  __bss_end;
 extern int  *__brkval;
@@ -85,7 +84,7 @@ const char string_json_bracket_close[] PROGMEM = "}";
 const char string_json_error_invalid_channel[] PROGMEM = "\"error\":\"Invalid channel\"";
 const char string_json_reboot_true PROGMEM = "\"reboot\":true";
 const char string_json_reset_true PROGMEM = "\"reset\":true";
-const char string_hardware_version[] PROGMEM = "\"hardware\":\"room-v0.7a\",";
+const char string_hardware_version[] PROGMEM = "\"hardware\":\"room-v0.8a\",";
 const char string_firmware_version[] PROGMEM = "\"firmware\":\"0.0.4a\"";
 const char string_json_key_uptime[] PROGMEM = ",\"uptime\":";
 const char * const string_table[] PROGMEM = {
