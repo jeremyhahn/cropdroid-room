@@ -1,6 +1,3 @@
-ORG := jeremyhahn
-PACKAGE := cropdroid.room
-TARGET_OS := linux
 
 AVRDUDE=/home/jhahn/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino14/bin/avrdude
 CONF=-C/home/jhahn/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino14/etc/avrdude.conf

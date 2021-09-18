@@ -84,8 +84,8 @@ const char string_json_bracket_close[] PROGMEM = "}";
 const char string_json_error_invalid_channel[] PROGMEM = "\"error\":\"Invalid channel\"";
 const char string_json_reboot_true PROGMEM = "\"reboot\":true";
 const char string_json_reset_true PROGMEM = "\"reset\":true";
-const char string_hardware_version[] PROGMEM = "\"hardware\":\"room-v0.8a\",";
-const char string_firmware_version[] PROGMEM = "\"firmware\":\"0.0.4a\"";
+const char string_hardware_version[] PROGMEM = "\"hardware\":\"room-v0.1b\",";
+const char string_firmware_version[] PROGMEM = "\"firmware\":\"1.0.0b\"";
 const char string_json_key_uptime[] PROGMEM = ",\"uptime\":";
 const char * const string_table[] PROGMEM = {
   string_initializing,
