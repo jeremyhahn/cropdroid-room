@@ -6,6 +6,9 @@ CONF=-C/home/jhahn/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino14/etc
 
 default: flash
 
+download:
+	avrdude -pm328p -cusbasp -u -U flash:r:flash.hex:i # save flash as "flash.hex", in Intel format
+
 #flash:
 #	$(AVRDUDE) -c usbasp -p m328p -u -U flash:w:build/Nano/cropdroid-room.hex
 
